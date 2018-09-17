@@ -46,7 +46,6 @@ router.delete('/sala/', function(req, res) {
 
 router.put('/sala/', function(req, res) {
     var params = req.body;
-    console.log(params)
     db_rooms.updateSala(params.id_sala, params.nome, params.lugares, function(err, result){
         if (err){
             res.status(500).send(err) 
