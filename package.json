@@ -1,8 +1,8 @@
 {
-  "name": "site_f",
+  "name": "RoomReservations",
   "version": "1.0.0",
-  "description": "magedados",
-  "main": "index.js",
+  "description": "Projeto de Megadados",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
