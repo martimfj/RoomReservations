@@ -1,11 +1,10 @@
 import ReactDom from 'react-dom';
 import React from  'react';
 import MenuAppBar from './components/MenuAppBar'
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
 const styleBut = {
-    width: 350/2,
+    width: 250/2,
   };
 
 export default class Register extends React.Component {
@@ -51,27 +50,26 @@ export default class Register extends React.Component {
     
     render(){
         return(
-            <Grid container spacing={16}>
-                <Grid item xs={12}>
-                   <div>
-                    </div>
-                </Grid>
-                <Grid item xs={6}>
-                    <div>
-                        <div className = "Rbigbox">
-                            <input type="text" placeholder="Nome" onChange={e => this.setState({ nome: e.target.value })} ></input><br/>
-                            <input type="password" placeholder="Senha" onChange={e => this.setState({ senha: e.target.value })}></input><br/>
-                            <input type="text" placeholder="Email" onChange={e => this.setState({ email: e.target.value })}></input><br/>
-                            <input type="text" placeholder="Curso" onChange={e => this.setState({ curso: e.target.value })}></input><br/>
-                            <input type="text" placeholder="Semestre" onChange={e => this.setState({ semestre: e.target.value })}></input><br/>
-                            
-                            <Button variant="outlined" style={styleBut} onClick = {this.confirmClick} >Conirmar </Button>
-                            <Button variant="outlined" style={styleBut} onClick = {this.cancelClick}>Cancelar</Button>
-                            
-                        </div>   
-                    </div>
-                </Grid>
-            </Grid>
+            <div className = "Rbigbox">
+
+                <div className = "header">
+                    <div>La<span>Lala</span></div>
+                </div>
+                
+                <div class="register">
+                
+                    <input type="text" placeholder="Nome" onChange={e => this.setState({ nome: e.target.value })} ></input><br/>
+                    <input type="password" placeholder="Senha" onChange={e => this.setState({ senha: e.target.value })}></input><br/>
+                    <input type="text" placeholder="Email" onChange={e => this.setState({ email: e.target.value })}></input><br/>
+                    <input type="text" placeholder="Curso" onChange={e => this.setState({ curso: e.target.value })}></input><br/>
+                    <input type="text" placeholder="Semestre" onChange={e => this.setState({ semestre: e.target.value })}></input><br/>
+
+                    <Button variant="outlined" style={styleBut} onClick = {this.confirmClick} >Conirmar </Button>
+                    <Button variant="outlined" style={styleBut} onClick = {this.cancelClick}>Cancelar</Button>
+                
+                </div>    
+                
+            </div>          
         );
     }
 }

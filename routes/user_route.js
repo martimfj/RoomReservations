@@ -56,6 +56,7 @@ router.put('/user/', function(req, res) {
 })
 
 router.post('/auth', function(req, res) {
+    console.log("Login Request")
     var params = req.body;
     db_rooms.getAuth(params.email, function(err, result){
         if (err){

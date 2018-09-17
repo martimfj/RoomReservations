@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { Redirect } from 'react-router-dom'
 
 const styleBut = {
-    width: 350/2,
+    width: 5/2,
   };
 
 
