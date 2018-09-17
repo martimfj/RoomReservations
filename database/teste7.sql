@@ -1,4 +1,3 @@
 USE RoomReservations;
 
-
-SELECT * FROM usuarios;
+Describe reservas;

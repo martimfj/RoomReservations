@@ -2,9 +2,12 @@ import ReactDom from 'react-dom';
 import React from  'react';
 import MenuAppBar from './components/MenuAppBar'
 import Grid from '@material-ui/core/Grid';
-import Table from './components/Table';
 
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
@@ -26,48 +29,37 @@ export default class Main extends React.Component{
     constructor(){
         super();
         this.state={
-            salas:[],
-            idSala: 0
+            salas         : [],
+            reservas      : [],
+            idSala        : 0
         }
+        this.getSalas =  this.getSalas.bind(this);
+        this.getMapReservas =  this.getMapReservas.bind(this);
     }
 
-    
-    getSalas(){      
-        fetch('/salas', {
+    getReservas = async() => {      
+        let res = await fetch('/reservas', {
             method: 'GET'
         })
-        .then(res => res.json())
-        .then(result => {
-            let perguntas = []
-            for(var i = 0; i < result.length; i++){
-                
-                perguntas.push( 
-                    <Card style = {{maxWidth: 345, margin:10}}  onClick= {this.getIdSala}>
-                            <CardMedia 
-                            />
-                            <CardContent>
-                            <Typography gutterBottom variant="headline" component="h2">
-                                Sala: {result[i].nome}
-                            </Typography>
-                            <Typography component="p">
-                                Lugares: {result[i].lugares}
-                            </Typography>
-                            </CardContent>
-                    </Card>
-                    )
-            }
-            this.setState({salas: perguntas})
-            })   
+        res = await res.json()
+        this.setState({reservas: res})
     }
 
-
+    getSalas = async() => {      
+        let res = await fetch('/salas', {
+            method: 'GET'
+        })
+        res = await res.json()
+        this.setState({salas: res})
+    }
     
     componentWillMount(){
         this.getSalas()
-     }
+    }
 
 
     render(){
+  
         return(
             <Grid container spacing={16}>
                 <Grid item xs={12}>
@@ -75,16 +67,53 @@ export default class Main extends React.Component{
                 </Grid>
 
                 <Grid item xs={3}>
-                    {this.state.salas.slice(0,this.state.salas.length/2)}
+                    
+                    {this.state.salas.map((card, index) => {
+                        return (
+                            <Card style = {{maxWidth: 345, margin:10}} onClick={(e) => this.getMapReservas(e, card.id_sala, card.nome)}>
+                                <CardMedia/>
+                                <CardContent>
+                                <Typography gutterBottom variant="headline" component="h2">
+                                    Sala: {card.nome}
+                                </Typography>
+                                <Typography component="p">
+                                    Lugares: {card.lugares}
+                                </Typography>
+                                </CardContent>
+                            </Card>
+                        )
+                    })}
+
                 </Grid>
 
-                
                 <Grid item xs={3}>
-                    {this.state.salas.slice(this.state.salas.length/2, this.state.salas.length)}
-                </Grid>
+                </Grid> 
 
                 <Grid item xs={6}>
-                    <Table/>
+                    
+                <Paper>
+                    <Table >
+                        <TableHead >
+                        <TableRow>
+                            <TableCell >Entrada</TableCell>
+                            <TableCell >Saida</TableCell>
+                        </TableRow>
+                        </TableHead>                            
+                        <TableBody>            
+                            {this.state.salas.map((line, index) => {
+                            return (
+                        
+                            <TableRow>
+                                <TableCell numeric>{line.entrada}</TableCell>
+                                <TableCell numeric>{line.saida}</TableCell>
+                            </TableRow>            
+                            )
+                            })}
+                        </TableBody>
+                    </Table>
+                </Paper>
+
+
                 </Grid>
             </Grid>
         );

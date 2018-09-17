@@ -25,7 +25,7 @@ export default class Register extends React.Component {
     };
 
     confirmClick = (value) => {
-        fetch('/register', {
+        fetch('/user', {
             method: 'POST',
             body: JSON.stringify({
                 "email": this.state.email,
@@ -38,12 +38,12 @@ export default class Register extends React.Component {
         })
         .then(res => res.json())
         .then(callback => {
-            if(callback.status === "200"){
-                localStorage.setItem("email", callback.email)
+            if(callback.status === "201"){
+                localStorage.setItem("email", this.state.email)
                 window.location.assign('/main'); 
             }
             else if(callback.status === "500"){
-                alert(callback.auth)
+                alert(callback.message)
             }
         })
     };
