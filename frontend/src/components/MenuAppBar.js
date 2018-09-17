@@ -54,6 +54,19 @@ class PrimarySearchAppBar extends React.Component {
     this.setState({ anchorEl: null });
   };
 
+
+  redProfile = () => {
+    this.setState({ anchorEl: null });
+    window.location.assign('/profile');  
+};
+
+  redMain = () => {
+    this.setState({ anchorEl: null });
+    window.location.assign('/main');  
+  };
+
+
+
   singOutClick = () => {
     this.setState({ anchorEl: null });
     window.location.assign('/login');  
@@ -63,6 +76,9 @@ class PrimarySearchAppBar extends React.Component {
     this.setState({ anchorEl: null });
     window.location.assign('/forum');  
 };
+
+
+
 
   render() {
     const { anchorEl} = this.state;
@@ -77,7 +93,7 @@ class PrimarySearchAppBar extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleClose}>Profile</MenuItem>
+        <MenuItem onClick={this.redProfile}>Profile</MenuItem>
         <MenuItem onClick={this.singOutClick}>Sing Out</MenuItem>
       </Menu>
     );
@@ -86,7 +102,7 @@ class PrimarySearchAppBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="absolute" >
           <Toolbar>
-            <Typography className={classes.title} variant="title" color="inherit" noWrap>
+            <Typography className={classes.title} onClick = {this.redMain} variant="title" color="inherit" noWrap>
               Lalala
             </Typography>
 
