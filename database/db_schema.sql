@@ -23,7 +23,7 @@ CREATE TABLE Usuarios(
 	senha  			VARCHAR(50) NOT NULL,
 	semestre		INT,
 	id_curso	    INT NOT NULL,
-	reputacao		INT,
+	reputacao		INT DEFAULT 100,
 
     PRIMARY KEY	(id_usuario),
     FOREIGN KEY(id_curso) REFERENCES Cursos(id_curso)
@@ -56,7 +56,7 @@ CREATE TABLE Reclamacoes(
     tipo_r			INT NOT NULL,
     descricao		TEXT(63.000),
     horario			TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    estado			INT NOT NULL,
+    estado			INT DEFAULT 0,
     
     PRIMARY KEY(id_reclamacao),
     FOREIGN KEY(id_usuario) REFERENCES Usuarios(id_usuario),

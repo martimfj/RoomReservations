@@ -11,14 +11,12 @@ CREATE PROCEDURE adiciona_usuario (IN novo_email VARCHAR(100),
 IN novo_nome VARCHAR(80),
 IN novo_senha VARCHAR(50),
 IN novo_curso INT,
-IN novo_semestre INT,
-IN novo_reputacao INT)
+IN novo_semestre INT)
 BEGIN
-    INSERT INTO Usuarios (email, nome, senha, curso, semestre, reputacao) 
-    VALUE (novo_email, novo_nome, novo_senha, novo_curso, novo_semestre, novo_reputacao);
+    INSERT INTO Usuarios (email, nome, senha, id_curso, semestre) 
+    VALUE (novo_email, novo_nome, novo_senha, novo_curso, novo_semestre);
 END//
 DELIMITER ;
-
 
 -- Função para adicionar uma reserva 
 DELIMITER //
@@ -34,11 +32,10 @@ DELIMITER //
 CREATE PROCEDURE adiciona_reclamacao (IN novo_idusuario INT, 
 IN novo_idsala INT,
 IN novo_tipo INT,
-IN novo_descricao TEXT(63.000),
-IN novo_estado INT)
+IN novo_descricao TEXT(63.000))
 BEGIN
-    INSERT INTO Reclamacoes (id_usuario, id_sala, tipo_r, descricao, estado) 
-    VALUE (novo_idusuario, novo_idsala, novo_tipo, novo_descricao, novo_estado);
+    INSERT INTO Reclamacoes (id_usuario, id_sala, tipo_r, descricao) 
+    VALUE (novo_idusuario, novo_idsala, novo_tipo, novo_descricao);
 END //
 DELIMITER ;
 
@@ -67,3 +64,61 @@ CREATE VIEW reclamacao_info AS
     FROM Reclamacoes
 		INNER JOIN Salas USING (id_sala)
         INNER JOIN Usuarios USING(id_usuario);
+
+
+-- TRIGGER
+DROP TRIGGER IF EXISTS trig_usuario;
+DROP TRIGGER IF EXISTS trig_sala;
+
+-- Caso um usuário seja deletado, sua reserva e reclamação também será
+DELIMITER //
+CREATE TRIGGER trig_usuario 
+BEFORE DELETE ON Usuarios
+FOR EACH ROW
+BEGIN
+    DELETE FROM Reservas
+	WHERE id_usuario = old.id_usuario;
+    DELETE FROM Reclamacoes
+	WHERE id_usuario = old.id_usuario;
+END//
+DELIMITER ;
+
+-- Caso uma sala seja deletada, sua reserva e reclamação também será
+DELIMITER //
+CREATE TRIGGER trig_sala 
+BEFORE DELETE ON Salas
+FOR EACH ROW
+BEGIN
+    DELETE FROM Reservas
+	WHERE id_sala = old.id_sala;
+    DELETE FROM Reclamacoes
+	WHERE id_sala = old.id_sala;
+END//
+DELIMITER ;
+
+
+--FUNCTION
+SET GLOBAL log_bin_trust_function_creators = 1;
+DROP FUNCTION IF EXISTS reclamacoes_abertas;
+DROP FUNCTION IF EXISTS reclamacoes_fechadas;
+
+-- Verifica quantas reclamações estão em aberto (ainda não resolvida)
+DELIMITER //
+CREATE FUNCTION reclamacoes_abertas() RETURNS INT
+BEGIN
+	DECLARE aberta INT;
+	SELECT COUNT(estado) INTO aberta FROM Reclamacoes WHERE estado=0;
+    RETURN aberta;
+END //
+DELIMITER ;
+
+-- Verifica quantas reclamações já estão fechadas (resolvidas)
+DELIMITER //
+CREATE FUNCTION reclamacoes_fechadas() RETURNS INT
+BEGIN
+	DECLARE fechada INT;
+	SELECT COUNT(estado) INTO fechada FROM Reclamacoes WHERE estado=1;
+    RETURN fechada;
+END //
+DELIMITER ;
+
