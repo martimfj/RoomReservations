@@ -8,7 +8,7 @@ router.get('/cursos', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
-        res.status(200).send(result)
+        res.status(200).send(result[0])
     })
 })
 
@@ -18,7 +18,7 @@ router.get('/curso/:id_curso', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
-        res.status(200).send(result)
+        res.status(200).send(result[0])
     })
 })
 
