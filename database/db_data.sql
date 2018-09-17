@@ -1,20 +1,20 @@
 USE RoomReservations;
 
-INSERT INTO Salas (nome, lugares) 
+INSERT INTO Salas (nome_sala, lugares) 
 VALUES ('1', 5),
 ('2', 4),
 ('3', 4),
 ('4', 5);
 COMMIT;
 
-INSERT INTO Cursos (nome, tipo) VALUES ('Engenharia da Computação', 0),
+INSERT INTO Cursos (nome_curso, tipo) VALUES ('Engenharia da Computação', 0),
 ('Engenharia Mecânica',0),
 ('Engenharia Mecatronica', 0),
 ('Administração', 0),
 ('Economia', 0);
 COMMIT;
 
-INSERT INTO Usuarios (email, nome, senha, semestre, curso, reputacao)
+INSERT INTO Usuarios (email, nome, senha, semestre, id_curso, reputacao)
 VALUES ('brunamk@al.insper.edu.br', 'Bruna Kimura', 'bru1234', 6, 1, 75),
 ('felipesmn@al.insper.edu.br', 'Felipe Scandiuzzi', 'fe1234', 6, 2, 100),
 ('matimfj@al.insper.edu.br', 'Martim José', 'ma1234', 6, 1, 50);

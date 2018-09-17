@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS Salas;
 
 CREATE TABLE Cursos(
 	id_curso  		INT AUTO_INCREMENT NOT NULL,
-	nome			VARCHAR(80) NOT NULL,
+	nome_curso		VARCHAR(80) NOT NULL,
     tipo			INT NOT NULL,
     
 	PRIMARY KEY(id_curso)
@@ -22,28 +22,29 @@ CREATE TABLE Usuarios(
     nome   			VARCHAR(80) NOT NULL,
 	senha  			VARCHAR(50) NOT NULL,
 	semestre		INT,
-	curso	    	INT NOT NULL,
+	id_curso	    INT NOT NULL,
 	reputacao		INT,
 
     PRIMARY KEY	(id_usuario),
-    FOREIGN KEY(curso) REFERENCES Cursos(id_curso)
+    FOREIGN KEY(id_curso) REFERENCES Cursos(id_curso)
 );
 
 CREATE TABLE Salas(
 	id_sala		INT  AUTO_INCREMENT NOT NULL,
-    nome		VARCHAR(30) NOT NULL,
+    nome_sala	VARCHAR(30) NOT NULL,
 	lugares		INT NOT NULL,
     
     PRIMARY KEY	(id_sala)
 );
 
 CREATE TABLE Reservas(
+	id_reserva		INT NOT NULL AUTO_INCREMENT,
 	id_sala			INT NOT NULL, 
 	id_usuario		INT	NOT NULL,
-	entrada			DATE NOT NULL,
-	saida			DATE NOT NULL,
+	entrada			TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	saida			DATETIME NOT NULL,
 
-	PRIMARY KEY(id_sala, id_usuario),
+	PRIMARY KEY(id_reserva),
     FOREIGN KEY(id_sala) 	REFERENCES Salas(id_sala), 
     FOREIGN KEY(id_usuario) REFERENCES Usuarios(id_usuario)
 );
