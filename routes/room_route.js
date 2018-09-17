@@ -8,7 +8,7 @@ router.get('/salas', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
-        res.status(200).send(result[0])
+        res.status(200).send(result)
     })
 })
 
@@ -18,7 +18,7 @@ router.get('/sala/:id_sala', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
-        res.status(200).send(result[0])
+        res.status(200).send(result)
     })
 })
 

@@ -8,7 +8,7 @@ router.get('/users', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
-        res.status(200).send(result[0])
+        res.status(200).send(result)
     })
 })
 
@@ -18,7 +18,7 @@ router.get('/user/:id_usuario', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
-        res.status(200).send(result[0])
+        res.status(200).send(result)
     })
 })
 
