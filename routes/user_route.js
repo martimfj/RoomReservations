@@ -59,21 +59,28 @@ router.post('/auth', function(req, res) {
     console.log("Login Request")
     var params = req.body;
     db_rooms.getAuth(params.email, function(err, result){
-        if (err){
-            res.status(500).send(err)
+        if (err) {
+            res.json({"status": "500", "message": "Erro na query do MySQL"})
+            console.log("Erro na query MySQL")
             throw err
         }
 
-        if(result.length > 0) {
-            var result = JSON.parse(JSON.stringify(result));
-       
-            if(result[0].senha === params.senha){
-                    return res.json({"status": "200", "message": "Login efetuado com sucesso."})
+        else{
+            if(result.length > 0){
+                if(params.senha == result[0].senha){
+                    res.json({"status": "200", "message": "Login efetuado com sucesso."})
+                    console.log("Usuário autenticado")
                 }
+                else{
+                    res.json({"status": "401", "message": "Senha não confere"})
+                    console.log("Senha não confere")
+                }
+            }
+            else{
+                res.json({"status": "401", "message": "Email não existe"})
+                console.log("Email não existe")
+            }
         }
-
-        return res.json({"status": "401", "message": "Usuário ou senha não conferem."})
-
     })
 })
 
