@@ -2,6 +2,9 @@ import ReactDom from 'react-dom';
 import React from  'react';
 import MenuAppBar from './components/MenuAppBar'
 import Grid from '@material-ui/core/Grid';
+import Table from './components/Table';
+
+
 
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
@@ -30,7 +33,7 @@ export default class Main extends React.Component{
 
     
     getSalas(){      
-        fetch('/main', {
+        fetch('/salas', {
             method: 'GET'
         })
         .then(res => res.json())
@@ -44,7 +47,7 @@ export default class Main extends React.Component{
                             />
                             <CardContent>
                             <Typography gutterBottom variant="headline" component="h2">
-                                {result[i].nome}
+                                Sala: {result[i].nome}
                             </Typography>
                             <Typography component="p">
                                 Lugares: {result[i].lugares}
@@ -71,14 +74,17 @@ export default class Main extends React.Component{
                     <MenuAppBar/>
                 </Grid>
 
-                <Grid item xs={6}>
-                    {this.state.salas}
+                <Grid item xs={3}>
+                    {this.state.salas.slice(0,this.state.salas.length/2)}
                 </Grid>
 
-                <Grid item xs={5}>
-                    <Paper>
-                        dasdsadas
-                    </Paper>
+                
+                <Grid item xs={3}>
+                    {this.state.salas.slice(this.state.salas.length/2, this.state.salas.length)}
+                </Grid>
+
+                <Grid item xs={6}>
+                    <Table/>
                 </Grid>
             </Grid>
         );

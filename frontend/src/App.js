@@ -4,6 +4,8 @@ import Login from './Login';
 import Main from './Main';
 import Register from './Register'
 import Forum from './Forum'
+import Profile from './Profile'
+
 
 class App extends React.Component {
   render(){
@@ -13,8 +15,10 @@ class App extends React.Component {
           <Route exact path="/" component={Login} />
           <Route path="/main" component={Main} />
           <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
           <Route path="/register" component={Register} />
           <Route path="/forum" component={Forum} />
+          
         </div>
       </Router>          
     );

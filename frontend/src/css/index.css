@@ -7,14 +7,15 @@ body {
   font-family: sans-serif;
 }
 
-.bigbox{
-	height: 150px;
+
+/*Registro*/
+.Rbigbox{
+	height: 270px;
 	width: 350px;
 	z-index: 2;
 }
 
-
-.bigbox {
+.Rbigbox {
 	border-top: solid black 5px;
 	border-bottom: solid black 5px;
 	border-color: #6472C2;
@@ -32,14 +33,15 @@ body {
     transform: translate(-50%, -50%)
 }
 
-.Rbigbox{
-	height: 300px;
+
+/*Login*/
+.bigbox{
+	height: 120px;
 	width: 350px;
 	z-index: 2;
 }
 
-
-.Rbigbox {
+.bigbox {
 	border-top: solid black 5px;
 	border-bottom: solid black 5px;
 	border-color: #6472C2;
@@ -87,4 +89,32 @@ input[type=password] {
   margin: 5px;
   padding: 5px
 
+}
+
+#header{
+	float: left;
+	display: inline;
+	width: 1 0%;
+}
+
+.header div span{
+	color: #5379fa !important;
+}
+
+.header div {
+	color: Black;
+}
+
+.login{
+	position: absolute;
+	top: calc(50% - 70px);
+	left: calc(50% - 50px);
+	z-index: 2;
+}
+
+.register{
+	position: absolute;
+	top: calc(50% - 140px);
+	left: calc(50% - 50px);
+	z-index: 2;
 }
