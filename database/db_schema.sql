@@ -53,7 +53,7 @@ CREATE TABLE Reclamacoes(
 	id_reclamacao	INT NOT NULL AUTO_INCREMENT,
     id_usuario		INT NOT NULL,		
     id_sala			INT NOT NULL,
-    tipo			INT NOT NULL,
+    tipo_r			INT NOT NULL,
     descricao		TEXT(63.000),
     horario			TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     estado			INT NOT NULL,

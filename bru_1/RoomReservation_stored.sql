@@ -47,12 +47,25 @@ USE RoomReservations;
 --     VALUE (novo_idusuario, novo_idsala, current_timestamp + 1/24);
 -- END //
 -- DELIMITER ;
-
+DROP PROCEDURE IF EXISTS adiciona_reclamacao;
 -- Função para adicionar uma reclamacao 
 DELIMITER //
-CREATE PROCEDURE adiciona_reserva (IN novo_idusuario INT, IN novo_idsala INT)
+CREATE PROCEDURE adiciona_reclamacao (IN novo_idusuario INT, 
+IN novo_idsala INT,
+IN novo_tipo INT,
+IN novo_descricao TEXT(63.000),
+IN novo_estado INT)
 BEGIN
-    INSERT INTO Reservas (id_usuario, id_sala, saida) 
-    VALUE (novo_idusuario, novo_idsala, current_timestamp + 1/24);
+    INSERT INTO Reclamacoes (id_usuario, id_sala, tipo_r, descricao, estado) 
+    VALUE (novo_idusuario, novo_idsala, novo_tipo, novo_descricao, novo_estado);
 END //
 DELIMITER ;
+
+-- DROP VIEW IF EXISTS reclamacao_info;
+-- 
+-- CREATE VIEW reclamacao_info AS 
+--     SELECT nome, nome_sala, tipo_r, descricao, horario, estado
+--     FROM Reclamacoes
+-- 		INNER JOIN Salas USING (id_sala)
+--         INNER JOIN Usuarios USING(id_usuario);
+

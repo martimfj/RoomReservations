@@ -25,7 +25,7 @@ VALUES (1, 1,'2006-02-15 04:30:33', '2006-02-15 04:50:33'),
 (2, 2, '2006-02-15 05:34:33', '2006-02-15 06:34:33');
 COMMIT;
 
-INSERT INTO Reclamacoes (id_usuario, id_sala, tipo, descricao, estado) 
+INSERT INTO Reclamacoes (id_usuario, id_sala, tipo_r, descricao, estado) 
 VALUES (1, 1, 0, 'tomada não funciona', 1),
 (2, 2, 0, 'tomada não funciona', 1);
 COMMIT;
