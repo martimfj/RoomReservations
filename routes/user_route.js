@@ -63,15 +63,17 @@ router.post('/auth', function(req, res) {
             res.status(500).send(err)
             throw err
         }
-        var resposta = JSON.parse(JSON.stringify(result[0]))
-        console.log(resposta, resposta.senha)
 
-        if (resposta.senha == params.senha){
-            res.status(200).send({message: "Usuário autenticado com sucesso"})
+        if(result.length > 0) {
+            var result = JSON.parse(JSON.stringify(result));
+       
+            if(result[0].senha === params.senha){
+                    return res.json({"status": "200", "message": "Login efetuado com sucesso."})
+                }
         }
-        else{
-            res.status(401).send({message: "Senha não corresponde"})
-        }
+
+        return res.json({"status": "401", "message": "Usuário ou senha não conferem."})
+
     })
 })
 

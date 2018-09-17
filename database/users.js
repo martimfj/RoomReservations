@@ -25,10 +25,10 @@ function getUser(id_usuario, callback) {
 
 function getAuth(email, callback) {
     var sql = 'SELECT senha FROM Usuarios WHERE email = ?'
-    connection.query(sql, email, function (err, result, fields) {
+    connection.query(sql, [email], function(err, result) {
         if (err) {
             callback(err, null)
-            throw err
+            throw err    
         }
         callback(null, result)
     })

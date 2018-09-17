@@ -13,7 +13,7 @@ export default class Login extends React.Component {
         super(props);
         this.state={
             email: '',
-            password: ''
+            senha: ''
         }
     }
 
@@ -27,7 +27,7 @@ export default class Login extends React.Component {
             method: 'POST',
             body: JSON.stringify({
                 "email": this.state.email,
-                "password": this.state.password
+                "senha": this.state.senha
             }),
             headers: {"Content-Type": "application/json"}
         })
@@ -35,9 +35,10 @@ export default class Login extends React.Component {
         .then(callback => {
           
             if(callback.status === "200"){
-                localStorage.setItem("email", callback.email)
+                localStorage.setItem("email", this.state.email)
                 alert(callback.message)
                 window.location.assign('/main'); 
+            
             }
           
             else if(callback.status === "401"){
@@ -57,7 +58,7 @@ export default class Login extends React.Component {
                 
                 <div class="login">
                     <input type="text" placeholder="Username" onChange={e => this.setState({ email: e.target.value })} ></input><br/>
-                    <input type="password" placeholder="Password"  onChange={e => this.setState({ password: e.target.value })}></input><br/>
+                    <input type="password" placeholder="Password"  onChange={e => this.setState({ senha: e.target.value })}></input><br/>
                     <Button variant="outlined" style={styleBut} onClick={(event) => this.handleClick(event)}>Login</Button>
                     <Button variant="outlined" style={styleBut} onClick = {this.registerClick}>Register</Button>
                 </div>
