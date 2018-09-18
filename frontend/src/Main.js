@@ -15,6 +15,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
+import Button from '@material-ui/core/Button';
+
 
 const styles = {
     card: {
@@ -45,6 +47,7 @@ export default class Main extends React.Component{
         })
         res = await res.json()
         this.setState({reservas: res})
+        console.log(res)
     }
 
     getSalas = async() => {      
@@ -56,7 +59,6 @@ export default class Main extends React.Component{
     }
 
     getReservasId(id_sala){
-        window.location.assign('/main/' + id_sala);  
         this.getReservas()
         
     }
