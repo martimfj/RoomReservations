@@ -47,25 +47,66 @@ USE RoomReservations;
 --     VALUE (novo_idusuario, novo_idsala, current_timestamp + 1/24);
 -- END //
 -- DELIMITER ;
-DROP PROCEDURE IF EXISTS adiciona_reclamacao;
--- Função para adicionar uma reclamacao 
-DELIMITER //
-CREATE PROCEDURE adiciona_reclamacao (IN novo_idusuario INT, 
-IN novo_idsala INT,
-IN novo_tipo INT,
-IN novo_descricao TEXT(63.000),
-IN novo_estado INT)
-BEGIN
-    INSERT INTO Reclamacoes (id_usuario, id_sala, tipo_r, descricao, estado) 
-    VALUE (novo_idusuario, novo_idsala, novo_tipo, novo_descricao, novo_estado);
-END //
-DELIMITER ;
-
--- DROP VIEW IF EXISTS reclamacao_info;
+-- DROP PROCEDURE IF EXISTS adiciona_reclamacao;
+-- -- Função para adicionar uma reclamacao 
+-- DELIMITER //
+-- CREATE PROCEDURE adiciona_reclamacao (IN novo_idusuario INT, 
+-- IN novo_idsala INT,
+-- IN novo_tipo INT,
+-- IN novo_descricao TEXT(63.000),
+-- IN novo_estado INT)
+-- BEGIN
+--     INSERT INTO Reclamacoes (id_usuario, id_sala, tipo_r, descricao, estado) 
+--     VALUE (novo_idusuario, novo_idsala, novo_tipo, novo_descricao, novo_estado);
+-- END //
+-- DELIMITER ;
 -- 
+-- DROP VIEW IF EXISTS reclamacao_info;
+--
 -- CREATE VIEW reclamacao_info AS 
 --     SELECT nome, nome_sala, tipo_r, descricao, horario, estado
 --     FROM Reclamacoes
 -- 		INNER JOIN Salas USING (id_sala)
 --         INNER JOIN Usuarios USING(id_usuario);
 
+-- DROP TRIGGER IF EXISTS trig_usuario;
+-- 
+-- DELIMITER //
+-- CREATE TRIGGER trig_usuario 
+-- BEFORE DELETE ON Usuarios
+-- FOR EACH ROW
+-- BEGIN
+--     DELETE FROM Reservas
+-- 	WHERE id_usuario = old.id_usuario;
+--     DELETE FROM Reclamacoes
+-- 	WHERE id_usuario = old.id_usuario;
+-- END//
+-- DELIMITER ;
+
+-- DROP TRIGGER IF EXISTS trig_sala;
+-- 
+-- DELIMITER //
+-- CREATE TRIGGER trig_sala 
+-- BEFORE DELETE ON Salas
+-- FOR EACH ROW
+-- BEGIN
+--     DELETE FROM Reservas
+-- 	WHERE id_sala = old.id_sala;
+--     DELETE FROM Reclamacoes
+-- 	WHERE id_sala = old.id_sala;
+-- END//
+-- DELIMITER ;
+-- 
+
+DROP FUNCTION IF EXISTS reclamacoes_abertas;
+
+SET GLOBAL log_bin_trust_function_creators = 1;
+
+DELIMITER //
+CREATE FUNCTION reclamacoes_abertas() RETURNS INT
+BEGIN
+	DECLARE aberta INT;
+	SELECT COUNT(estado) INTO aberta FROM Reclamacoes WHERE estado=1;
+    RETURN aberta;
+END //
+DELIMITER ;

@@ -35,7 +35,7 @@ function getAuth(email, callback) {
 }
 
 function createUser(email, nome, senha, curso, semestre, callback) {
-    var sql = 'INSERT INTO Usuarios (email, nome, senha, curso, semestre) VALUES(?, ?, ?, ?, ?)'
+    var sql = 'CALL adiciona_usuario(?,?,?,?,?)'
     connection.query(sql, [email, nome, senha, curso, semestre], function (err, result, fields) {
         if (err) {
             callback(err, null)
