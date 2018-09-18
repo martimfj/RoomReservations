@@ -29,7 +29,7 @@ router.post('/user/', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
-        res.status(201).send({message: "Usuário criado com sucesso"})
+        res.json({status: "201", message: "Usuário criado com sucesso"})
     })
 })
 
@@ -54,6 +54,7 @@ router.put('/user/', function(req, res) {
         res.status(200).send({message: "Usuário atualizado com sucesso"})
     })
 })
+
 
 router.post('/auth', function(req, res) {
     console.log("Login Request")
