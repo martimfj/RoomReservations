@@ -46,10 +46,10 @@ function deleteSala(id_sala, callback) {
     })
 }
 
-function updateSala(id_sala, nome, lugares, callback) {
+function updateSala(id_sala, data, callback) {
     // ID_sala ou nome?
-    var sql = 'UPDATE Salas SET nome = ?, lugares = ? WHERE id_sala = ?'
-    connection.query(sql, [nome, lugares, id_sala], function (err, result, fields) {
+    var sql = 'UPDATE Salas SET ? WHERE id_sala = ?'
+    connection.query(sql, [data, id_sala], function (err, result, fields) {
         if (err) {
             callback(err, null)
             throw err

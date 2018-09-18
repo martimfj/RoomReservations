@@ -46,12 +46,12 @@ router.delete('/curso/', function(req, res) {
 
 router.put('/curso/', function(req, res) {
     var params = req.body;
-    db_rooms.updateCurso(params.id_curso, params.nome, params.tipo, function(err, result){
+    db_rooms.updateCurso(params.id_curso, params, function(err, result){
         if (err){
             res.status(500).send(err) 
             throw err
         }
-        res.status(200).send({message: "Curso atualizado com sucesso"})
+        res.status(200).send({message: "Usuário atualizado com sucesso"})
     })
 })
 

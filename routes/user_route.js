@@ -61,7 +61,7 @@ router.post('/auth', function(req, res) {
     var params = req.body;
     db_rooms.getAuth(params.email, function(err, result){
         if (err) {
-            res.json({"status": "500", "message": "Erro na query do MySQL"})
+            res.json({"status": "500", "message": "Erro ao acessar o banco de dados"})
             console.log("Erro na query MySQL")
             throw err
         }
@@ -69,7 +69,7 @@ router.post('/auth', function(req, res) {
         else{
             if(result.length > 0){
                 if(params.senha == result[0].senha){
-                    res.json({"status": "200", "message": "Login efetuado com sucesso."})
+                    res.json({"status": "200", "message": "Usuário autenticado com sucesso."})
                     console.log("Usuário autenticado")
                 }
                 else{

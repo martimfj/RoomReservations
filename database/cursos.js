@@ -12,7 +12,6 @@ function getCursos(callback) {
 }
 
 function getCurso(id_curso, callback) {
-    // ID_sala ou nome?
     var sql = 'SELECT * FROM Cursos WHERE id_curso = ?'
     connection.query(sql, id_curso, function (err, result, fields) {
         if (err) {
@@ -35,7 +34,6 @@ function createCurso(nome, tipo, callback) {
 }
 
 function deleteCurso(id_curso, callback) {
-    // ID_sala ou nome?
     var sql = 'DELETE FROM Cursos WHERE id_curso = ?'
     connection.query(sql, id_curso, function (err, result, fields) {
         if (err) {
@@ -46,10 +44,9 @@ function deleteCurso(id_curso, callback) {
     })
 }
 
-function updateCurso(id_curso, nome, tipo, callback) {
-    // ID_sala ou nome?
-    var sql = 'UPDATE Cursos SET nome = ?, tipo = ? WHERE id_curso = ?'
-    connection.query(sql, [nome, tipo, id_curso], function (err, result, fields) {
+function updateCurso(id_curso, data, callback) {
+    var sql = 'UPDATE Cursos SET ? WHERE id_curso = ?'
+    connection.query(sql, [data, id_curso], function (err, result, fields) {
         if (err) {
             callback(err, null)
             throw err
