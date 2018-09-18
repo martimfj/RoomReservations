@@ -57,7 +57,7 @@ class PrimarySearchAppBar extends React.Component {
 
   redProfile = () => {
     this.setState({ anchorEl: null });
-    window.location.assign('/profile');  
+    window.location.assign('/profile/1');  
 };
 
   redMain = () => {

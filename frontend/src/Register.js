@@ -14,7 +14,7 @@ export default class Register extends React.Component {
             email:'',
             nome:'',
             password:'',
-            curso:'',
+            id_curso:'',
             semestre:''
         }
     }
@@ -31,7 +31,7 @@ export default class Register extends React.Component {
                 "email": this.state.email,
                 "nome": this.state.nome,
                 "senha": this.state.senha,               
-                "curso": this.state.curso,
+                "id_curso": this.state.id_curso,
                 "semestre": this.state.semestre
             }),
             headers: {"Content-Type": "application/json"}
@@ -61,7 +61,7 @@ export default class Register extends React.Component {
                     <input type="text" placeholder="Nome" onChange={e => this.setState({ nome: e.target.value })} ></input><br/>
                     <input type="password" placeholder="Senha" onChange={e => this.setState({ senha: e.target.value })}></input><br/>
                     <input type="text" placeholder="Email" onChange={e => this.setState({ email: e.target.value })}></input><br/>
-                    <input type="text" placeholder="Curso" onChange={e => this.setState({ curso: e.target.value })}></input><br/>
+                    <input type="text" placeholder="Curso" onChange={e => this.setState({ id_curso: e.target.value })}></input><br/>
                     <input type="text" placeholder="Semestre" onChange={e => this.setState({ semestre: e.target.value })}></input><br/>
 
                     <Button variant="outlined" style={styleBut} onClick = {this.confirmClick} >Conirmar </Button>

@@ -14,32 +14,34 @@ export default class Profile extends React.Component{
     constructor(){
         super();
         this.state={
-            email:'',
+            id_user:1,
+            email:'11',
             nome:'',
-            senha:'',
+            senha:'1111111',
             curso:'',
             semestre:'',
             reputacao:'',
         }
     }
     
-    getProfile(){
 
-        fetch('/profile', {
+    getProfile(){
+        fetch('/user/1', {
             method: 'GET'
         })
         .then(res => res.json())
         .then(result => {
             this.setState({
-                email:      result.email,
-                nome:       result.nome,
-                senha:      result.senha,
-                curso:      result.curso,
-                semestre:   result.semestre,
-                reputacao:  result.reputacao,
-            
+                email:      result[0].email,
+                nome:       result[0].nome,
+                curso:      result[0].id_curso,
+                semestre:   result[0].semestre,
+                reputacao:  result[0].reputacao,
+                
               });
         })
+        console.log(this.state.email)
+    
     }
 
     editeProfile(){
@@ -56,6 +58,11 @@ export default class Profile extends React.Component{
         })
     };
 
+
+    componentDidMount(){
+        this.getProfile()
+    }
+
     render(){
         return(
             <Grid container spacing={16}>
@@ -66,7 +73,6 @@ export default class Profile extends React.Component{
                             <FormControl>
                                 <InputLabel htmlFor="name-simple">Nome</InputLabel>
                                 <Input
-                                    id="name-simple"
                                     value={this.state.nome}
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
@@ -77,7 +83,6 @@ export default class Profile extends React.Component{
                             <FormControl >
                                 <InputLabel htmlFor="name-simple">Email</InputLabel>
                                 <Input
-                                    id="name-simple"
                                     value={this.state.email}
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
@@ -89,7 +94,7 @@ export default class Profile extends React.Component{
                             <FormControl>
                                 <InputLabel htmlFor="name-simple">Senha</InputLabel>
                                 <Input
-                                    id="name-simple"
+                                    type = 'password'
                                     value={this.state.senha}
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
@@ -101,7 +106,6 @@ export default class Profile extends React.Component{
                             <FormControl>
                                 <InputLabel htmlFor="name-simple">Curso</InputLabel>
                                 <Input
-                                    id="name-simple"
                                     value={this.state.curso}
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
@@ -113,7 +117,6 @@ export default class Profile extends React.Component{
                             <FormControl>
                                 <InputLabel htmlFor="name-simple">Semestre</InputLabel>
                                 <Input
-                                    id="name-simple"
                                     value={this.state.semestre}
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />

@@ -33,8 +33,10 @@ export default class Main extends React.Component{
             reservas      : [],
             idSala        : 0
         }
-        this.getSalas =  this.getSalas.bind(this);
-        this.getMapReservas =  this.getMapReservas.bind(this);
+        this.getSalas    =  this.getSalas.bind(this);
+        this.getReservas =  this.getReservas.bind(this);
+        this.getReservasId =  this.getReservasId.bind(this);
+    
     }
 
     getReservas = async() => {      
@@ -53,10 +55,15 @@ export default class Main extends React.Component{
         this.setState({salas: res})
     }
     
-    componentWillMount(){
-        this.getSalas()
+    getReservasId(id_sala){
+        window.location.assign('/main/' + id_sala);  
+        this.getReservas()
     }
 
+    componentDidMount(){
+        this.getSalas()
+        this.getReservas()
+    }
 
     render(){
   
@@ -70,14 +77,14 @@ export default class Main extends React.Component{
                     
                     {this.state.salas.map((card, index) => {
                         return (
-                            <Card style = {{maxWidth: 345, margin:10}} onClick={(e) => this.getMapReservas(e, card.id_sala, card.nome)}>
+                            <Card style = {{maxWidth: 345, margin:10}}  onClick={() => this.getReservasId(card.id_sala)}>
                                 <CardMedia/>
                                 <CardContent>
                                 <Typography gutterBottom variant="headline" component="h2">
-                                    Sala: {card.nome}
+                                    Sala: {card.nome_sala}
                                 </Typography>
                                 <Typography component="p">
-                                    Lugares: {card.lugares}
+                                    Capacidade: {card.lugares} Pessoas
                                 </Typography>
                                 </CardContent>
                             </Card>
@@ -93,17 +100,21 @@ export default class Main extends React.Component{
                     
                 <Paper>
                     <Table >
-                        <TableHead >
+                        <TableHead style = {{backgroundColor: "#3F51B5"}}>
                         <TableRow>
-                            <TableCell >Entrada</TableCell>
-                            <TableCell >Saida</TableCell>
+                            <TableCell >Nome Sala</TableCell>
+                            <TableCell >Nome Usuario</TableCell>
+                            <TableCell numeric>Entrada</TableCell>
+                            <TableCell numeric>Saida</TableCell>
                         </TableRow>
                         </TableHead>                            
                         <TableBody>            
-                            {this.state.salas.map((line, index) => {
+                            {this.state.reservas.map((line, index) => {
                             return (
                         
                             <TableRow>
+                                <TableCell >{line.nome_sala}</TableCell>
+                                <TableCell >{line.nome}</TableCell>
                                 <TableCell numeric>{line.entrada}</TableCell>
                                 <TableCell numeric>{line.saida}</TableCell>
                             </TableRow>            
