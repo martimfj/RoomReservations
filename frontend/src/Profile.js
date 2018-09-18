@@ -16,7 +16,7 @@ export default class Profile extends React.Component{
     constructor(){
         super();
         this.state={
-            id_user:1,
+            id_user: 1,
             email:'11',
             nome:'',
             senha:'1111111',
@@ -51,64 +51,85 @@ export default class Profile extends React.Component{
     
     }
 
-    editeProfileEmail(){
-        fetch('/profile/' + this.state.id_user, {
-            method: 'POST',
+    editeProfileEmail = async() =>{
+        let res = await fetch('/user', {
+            method: 'PUT',
             body: JSON.stringify({
+                "id_usuario":this.state.id_user,
                 "email": this.state.email,
                  }),
             headers: {"Content-Type": "application/json"}
         })
-        window.location.assign('/profile/' + this.id_user);
+        res = await res.json()
+        alert(res.message)
+        window.location.assign('/profile'); 
+    
+   
     };
 
 
-    editeProfileNome(){
-        fetch('/profile/' + this.state.id_user, {
-            method: 'POST',
+    editeProfileNome = async() =>{
+        let res = await fetch('/user', {
+            method: 'PUT',
             body: JSON.stringify({
+                "id_usuario":this.state.id_user,
                 "nome": this.state.nome,
                 }),
             headers: {"Content-Type": "application/json"}
         })
-        window.location.assign('/profile/' + this.id_user);
+        res = await res.json()
+        alert(res.message)
+        window.location.assign('/profile');
+   
     };
 
 
-    editeProfileSenha(){
-        fetch('/profile/' + this.state.id_user, {
-            method: 'POST',
+    editeProfileSenha = async() =>{
+        let res = await fetch('/user' , {
+            method: 'PUT',
             body: JSON.stringify({
+                "id_usuario":this.state.id_user,
                 "senha": this.state.senha,               
             }),
             headers: {"Content-Type": "application/json"}
         })
-        window.location.assign('/profile/' + this.id_user);
+        res = await res.json()
+        alert(res.message)
+        window.location.assign('/profile');
+   
     };
 
 
     
-    editeProfileCurso(){
-        fetch('/profile/' + this.state.id_user, {
-            method: 'POST',
+    editeProfileCurso = async() =>{
+        let res = await fetch('/user', {
+            method: 'PUT',
             body: JSON.stringify({
+                "id_usuario":this.state.id_user,             
                 "curso": this.state.curso,
             }),
             headers: {"Content-Type": "application/json"}
         })
-        window.location.assign('/profile/' + this.id_user);
+        res = await res.json()
+        alert(res.message)
+        window.location.assign('/profile');
+   
     };
 
     
-    editeProfileSemestre(){
-        fetch('/profile/' + this.state.id_user, {
-            method: 'POST',
+    editeProfileSemestre = async() =>{
+        let res = await fetch('/user', {
+            method: 'PUT',
             body: JSON.stringify({
+                "id_usuario":this.state.id_user,             
                 "semestre": this.state.semestre
             }),
             headers: {"Content-Type": "application/json"}
         })
-        window.location.assign('/profile/' + this.id_user);  
+        res = await res.json()
+        alert(res.message)
+        window.location.assign('/profile');
+   
     };
 
 
@@ -139,7 +160,7 @@ export default class Profile extends React.Component{
                                 <InputLabel htmlFor="name-simple">Email</InputLabel>
                                 <Input
                                     value={this.state.email}
-                                    onChange={e => this.setState({ nome: e.target.value })}
+                                    onChange={e => this.setState({ email: e.target.value })}
                                 />
                             </FormControl>
                             <Button onClick = {this.editeProfileEmail}>Save</Button>
@@ -152,7 +173,7 @@ export default class Profile extends React.Component{
                                 <Input
                                     type = 'password'
                                     value={this.state.senha}
-                                    onChange={e => this.setState({ nome: e.target.value })}
+                                    onChange={e => this.setState({ senha: e.target.value })}
                                 />
                             </FormControl>
                             <Button onClick = {this.editeProfileSenha}>Save</Button>
@@ -164,7 +185,7 @@ export default class Profile extends React.Component{
                                 <InputLabel htmlFor="name-simple">Curso</InputLabel>
                                 <Input
                                     value={this.state.curso}
-                                    onChange={e => this.setState({ nome: e.target.value })}
+                                    onChange={e => this.setState({ curso: e.target.value })}
                                 />
                             </FormControl>
                             <Button onClick = {this.editeCurso}>Save</Button>
@@ -176,7 +197,7 @@ export default class Profile extends React.Component{
                                 <InputLabel htmlFor="name-simple">Semestre</InputLabel>
                                 <Input
                                     value={this.state.semestre}
-                                    onChange={e => this.setState({ nome: e.target.value })}
+                                    onChange={e => this.setState({ semestre: e.target.value })}
                                 />
                             </FormControl>
                             <Button onClick = {this.editeProfileSemestre}>Save</Button>

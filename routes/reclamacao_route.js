@@ -53,8 +53,12 @@ router.delete('/reclamacao/', function(req, res) {
 })
 
 router.put('/reclamacao/', function(req, res) {
+    console.log(req.body)
     var params = req.body;
-    db_rooms.updateReclamacao(params, params.id_reclamacao, function(err, result){
+    var id_reclamacao = params.id_reclamacao
+    delete params.id_reclamacao
+    
+    db_rooms.updateReclamacao(id_reclamacao,params, function(err, result){
         if (err){
             res.status(500).send({error : "Erro ao atualizar dados da reclamação no banco de dados." })
             console.log(err)
