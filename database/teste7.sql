@@ -1,3 +1,3 @@
 USE RoomReservations;
 
-Select * From usuarios;
+Select * From reclamacoes;

@@ -35,7 +35,6 @@ export default class Login extends React.Component {
         .then(callback => {
           
             if(callback.status === "200"){
-                localStorage.setItem("email", this.state.email)
                 alert(callback.message)
                 window.location.assign('/main'); 
             

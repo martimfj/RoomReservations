@@ -43,10 +43,13 @@ router.delete('/reclamacao/', function(req, res) {
         res.status(200).send({message: "Usuário deletado com sucesso"})
     })
 })
-
-router.put('/reclamacao/', function(req, res) {
+             
+router.put('/reclamacao', function(req, res) {
+    console.log("Put")
     var params = req.body;
-    db_rooms.updateReclamacao(params.id_reclamacao, params, function(err, result){
+    var id = params.id_reclamacao
+    delete params.id_reclamacao;
+    db_rooms.updateReclamacao(id, params, function(err, result){
         if (err){
             res.status(500).send(err) 
             throw err

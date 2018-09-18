@@ -60,7 +60,7 @@ CREATE VIEW reserva_info AS
 
 -- Consulta de reclamações
 CREATE VIEW reclamacao_info AS 
-    SELECT nome, nome_sala, tipo_r, descricao, horario, estado
+    SELECT id_reclamacao, nome, nome_sala, tipo_r, descricao, horario, estado
     FROM Reclamacoes
 		INNER JOIN Salas USING (id_sala)
         INNER JOIN Usuarios USING(id_usuario);
@@ -97,7 +97,7 @@ END//
 DELIMITER ;
 
 
---FUNCTION
+-- FUNCTION
 SET GLOBAL log_bin_trust_function_creators = 1;
 DROP FUNCTION IF EXISTS reclamacoes_abertas;
 DROP FUNCTION IF EXISTS reclamacoes_fechadas;

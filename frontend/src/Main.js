@@ -54,16 +54,19 @@ export default class Main extends React.Component{
         res = await res.json()
         this.setState({salas: res})
     }
-    
+
     getReservasId(id_sala){
         window.location.assign('/main/' + id_sala);  
         this.getReservas()
+        
     }
+
 
     componentDidMount(){
         this.getSalas()
         this.getReservas()
     }
+
 
     render(){
   
@@ -112,7 +115,7 @@ export default class Main extends React.Component{
                             {this.state.reservas.map((line, index) => {
                             return (
                         
-                            <TableRow>
+                            <TableRow >
                                 <TableCell >{line.nome_sala}</TableCell>
                                 <TableCell >{line.nome}</TableCell>
                                 <TableCell numeric>{line.entrada}</TableCell>

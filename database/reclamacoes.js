@@ -46,7 +46,8 @@ function deleteReclamacao(id_reclamacao, callback) {
 }
 
 function updateReclamacao(id_reclamacao, data, callback) {
-    var sql = 'UPDATE Usuarios SET ? WHERE id_reclamacao = ?'
+    console.log(data)
+    var sql = 'UPDATE Reclamacoes SET ? WHERE id_reclamacao = ?'
     connection.query(sql, [data, id_reclamacao], function (err, result, fields) {
         if (err) {
             callback(err, null)

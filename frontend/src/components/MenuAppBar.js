@@ -77,8 +77,20 @@ class PrimarySearchAppBar extends React.Component {
     window.location.assign('/forum');  
 };
 
+/*
+  getCountAt = async() => {
+    console.log("APP")      
+    let res = await fetch('/reclamacaoCountAt', {
+        method: 'GET'
+    })
+    res = await res.json()
+    console.log(res)
+  }
 
-
+  componentDidMount(){
+    this.getCountAt()
+  }
+*/
 
   render() {
     const { anchorEl} = this.state;
