@@ -307,7 +307,7 @@ Autentica o usuário comparando a senha passada no request, com a senha armazena
 * **Resposta de Sucesso:**
 
     * **Código:** 200 OK <br />
-    * **Conteúdo:** `{message: "Usuário autenticado com sucesso."}`
+    * **Conteúdo:** `{ message: "Usuário autenticado com sucesso."}`
 
 * **Resposta de Erro:**
 
