@@ -1,11 +1,11 @@
-**Mostra Reservas**
+**Mostra Reclamações**
 ----
 
-Retorna JSON com dados de todos as reservas.
+Retorna JSON com dados de todos as reclamações.
 
 * **URL**
 
-    /reservas/
+    /reclamacoes/
 
 * **Método:**
 
@@ -28,41 +28,45 @@ Retorna JSON com dados de todos as reservas.
 
     ```json
     {
+        "nome": "Bruna Kimura",
         "nome_sala": "1",
-        "nome": "Nome do usuário",
-        "entrada": "Data e horário de entrada",
-        "saida": "Data e horário de entrada"
+        "tipo_r": 0,
+        "descricao": "tomada não funciona",
+        "horario": "2018-09-18T03:38:42.000Z",
+        "estado": 1
     },
     {
+        "nome": "Bruna Kimura",
         "nome_sala": "2",
-        "nome": "Nome do usuário",
-        "entrada": "Data e horário de entrada",
-        "saida": "Data e horário de entrada"
+        "tipo_r": 0,
+        "descricao": "cadeira está quebrada",
+        "horario": "2018-09-18T03:38:42.000Z",
+        "estado": 1
     }
     ```
  
 * **Resposta de Erro:**
 
   * **Código:** 404 NOT FOUND <br />
-    **Conteúdo:** `{ error : "Não existe reservas cadastradas no banco de dados." }`
+    **Conteúdo:** `{ error : "Não existe reclamações no banco de dados." }`
 
 * **Exemplo de chamada:**
 
     ```javascript
-        fetch('/reservas/', {
+        fetch('/reclamacoes/', {
             method: 'GET',
             headers: {"Content-Type": "application/json"}
         })
     ```
 
-**Mostra Reserva**
+**Mostra Reclamação**
 ----
 
-Retorna JSON com dados de uma reserva em específico.
+Retorna JSON com dados de uma reclamação em específico.
 
 * **URL**
 
-    /reserva/
+    /reclamacao/
 
 * **Método:**
 
@@ -72,7 +76,7 @@ Retorna JSON com dados de uma reserva em específico.
 
     **Required:**
 
-    `:id_reserva`
+    `:id_reclamacao`
 
 * **Parâmetros de Body**
 
@@ -85,36 +89,38 @@ Retorna JSON com dados de uma reserva em específico.
 
     ```json
     {
-        "id_reserva": 1,
-        "id_sala": 1,
+        "id_reclamacao": 1,
         "id_usuario": 1,
-        "entrada": "Data e horário de entrada",
-        "saida": "Data e horário de entrada"
+        "id_sala": 1,
+        "tipo_r": 0,
+        "descricao": "tomada não funciona",
+        "horario": "2018-09-18T03:38:42.000Z",
+        "estado": 1
     }
     ```
 
 * **Resposta de Erro:**
 
   * **Código:** 404 NOT FOUND <br />
-    **Conteúdo:** `{ error : "Não existe uma reserva com esse ID no banco de dados." }`
+    **Conteúdo:** `{ error : "Não existe uma reclamação com esse ID no banco de dados." }`
 
 * **Exemplo de chamada:**
 
     ```javascript
-        fetch('/reserva/:id_reserva', {
+        fetch('/reclamacao/:id_reclamacao', {
             method: 'GET',
             headers: {"Content-Type": "application/json"}
         })
     ```
 
-**Adiciona Reserva**
+**Adiciona Reclamação**
 ----
 
-Insere uma nova reserva no banco de dados, passando as informações necessárias.
+Insere uma nova reclamação no banco de dados, passando as informações necessárias.
 
 * **URL**
 
-    /reserva/
+    /reclamacao/
 
 * **Método:**
 
@@ -131,19 +137,21 @@ Insere uma nova reserva no banco de dados, passando as informações necessária
     ```json
     {
         "id_usuario": 1,
-        "id_sala": 1
+        "id_sala": 1,
+        "tipo": 0,
+        "descricao": "a porta caiu"
     }
     ```
 
 * **Resposta de Sucesso:**
 
     * **Código:** 201 CREATED <br />
-    * **Conteúdo:** `{message: "Reserva criada com sucesso."}`
+    * **Conteúdo:** `{message: "Reclamação criada com sucesso."}`
 
 * **Resposta de Erro:**
 
   * **Código:** 500 INTERNAL SERVER ERROR <br />
-    **Conteúdo:** `{ error : "Erro na criação de uma reserva no banco de dados." }`
+    **Conteúdo:** `{ error : "Erro na criação de uma reclamação no banco de dados." }`
 
 * **Exemplo de chamada:**
 
@@ -152,20 +160,22 @@ Insere uma nova reserva no banco de dados, passando as informações necessária
             method: 'POST',
             body: JSON.stringify({
                 "id_usuario": this.state.id_user,
-                "id_sala": this.state.id_room
+                "id_sala": this.state.id_room,
+                "tipo": this.state.type,
+                "descricao": this.state.description
             }),
             headers: {"Content-Type": "application/json"}
         })
     ```
 
-**Remove Reserva**
+**Remove Reclamação**
 ----
 
-Remove uma reserva do banco de dados, passando o ID da reserva.
+Remove uma reclamação do banco de dados, passando o ID da reclamação.
 
 * **URL**
 
-    /reserva/
+    /reclamacao/
 
 * **Método:**
 
@@ -181,40 +191,40 @@ Remove uma reserva do banco de dados, passando o ID da reserva.
 
     ```json
     {
-        "id_reserva": "ID da reserva"
+        "id_reclamacao": "ID da reclamação"
     }
     ```
 
 * **Resposta de Sucesso:**
 
     * **Código:** 200 OK <br />
-    * **Conteúdo:** `{message: "Reserva removida com sucesso."}`
+    * **Conteúdo:** `{message: "Reclamação removida com sucesso."}`
 
 * **Resposta de Erro:**
 
   * **Código:** 500 INTERNAL SERVER ERROR <br />
-    **Conteúdo:** `{ error : "Erro ao remover usuário do banco de dados." }`
+    **Conteúdo:** `{ error : "Erro na remoção de uma reclamação no banco de dados." }`
 
 * **Exemplo de chamada:**
 
     ```javascript
-        fetch('/reserva', {
+        fetch('/reclamacao', {
             method: 'DELETE',
             body: JSON.stringify({
-                "id_reserva":    this.state.id_reserva            
+                "id_reclamacao":    this.state.id_reclamacao
             }),
             headers: {"Content-Type": "application/json"}
         })
     ```
 
-**Atualiza Reserva**
+**Atualiza Reclamação**
 ----
 
-Atualiza alguma informação da reserva no banco de dados, passando o ID da reserva e a informação a ser trocada.
+Atualiza alguma informação da reclamação no banco de dados, passando o ID da reclamação e a informação a ser trocada.
 
 * **URL**
 
-    /reserva/
+    /reclamacao/
 
 * **Método:**
 
@@ -230,34 +240,128 @@ Atualiza alguma informação da reserva no banco de dados, passando o ID da rese
 
     ```json
     {
-        "id_reserva": "ID da reserva",
-        "data": "nova data"
+        "id_reclamação": "ID da reserva",
+        "descricao": "nova descrição"
     }
     ```
 
 * **Resposta de Sucesso:**
 
     * **Código:** 200 OK <br />
-    * **Conteúdo:** `{message: "Reserva atualizada com sucesso."}`
+    * **Conteúdo:** `{message: "Reclamação atualizada com sucesso."}`
 
 * **Resposta de Erro:**
 
   * **Código:** 500 INTERNAL SERVER ERROR <br />
-    **Conteúdo:** `{ error : "Erro ao atualizar dados da reserva no banco de dados." }`
+    **Conteúdo:** `{ error : "Erro ao atualizar dados da reclamação no banco de dados." }`
 
 * **Exemplo de chamada:**
 
     ```javascript
-        fetch('/reserva', {
+        fetch('/reclamacao', {
             method: 'PUT',
             body: JSON.stringify({
-                "id_reserva":   this.state.reserva_id             
-                "data":        this.state.new_date            
+                "id_reserva":   this.state.reserva_id,            
+                "descricao":    this.state.new_date            
             }),
             headers: {"Content-Type": "application/json"}
         })
     ```
 
+**Mostra Reclamações Abertas**
+----
 
+Retorna JSON com a quantidade reclamações abertas
+
+* **URL**
+
+    /openreclamacoes/
+
+* **Método:**
+
+    `GET`
+  
+*  **Parâmetros da URL**
+
+    **Required:**
+
+    None
+
+* **Parâmetros de Body**
+
+    None
+
+* **Resposta de Sucesso:**
+
+    * **Código:** 200 OK<br />
+    * **Conteúdo:**
+
+    ```json
+    {
+        "reclamacoes_abertas()": 4
+    }
+    ```
+ 
+* **Resposta de Erro:**
+
+  * **Código:** 500 INTERNAL SERVER ERROR <br />
+    **Conteúdo:** `{ error : "Erro ao atualizar dados da reclamação no banco de dados." }`
+
+* **Exemplo de chamada:**
+
+    ```javascript
+        fetch('/openreclamacoes/', {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"}
+        })
+    ```
+
+**Mostra Reclamações Fechadas**
+----
+
+Retorna JSON com a quantidade reclamações fechadas
+
+* **URL**
+
+    /closedreclamacoes/
+
+* **Método:**
+
+    `GET`
+  
+*  **Parâmetros da URL**
+
+    **Required:**
+
+    None
+
+* **Parâmetros de Body**
+
+    None
+
+* **Resposta de Sucesso:**
+
+    * **Código:** 200 OK<br />
+    * **Conteúdo:**
+
+    ```json
+    {
+        "reclamacoes_fechadas()": 2
+    }
+    ```
+ 
+* **Resposta de Erro:**
+
+  * **Código:** 500 INTERNAL SERVER ERROR <br />
+    **Conteúdo:** `{ error : "Erro ao atualizar dados da reclamação no banco de dados." }`
+
+* **Exemplo de chamada:**
+
+    ```javascript
+        fetch('/closedreclamacoes/', {
+            method: 'GET',
+            headers: {"Content-Type": "application/json"}
+        })
+    ```
 
 

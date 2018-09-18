@@ -8,6 +8,9 @@ router.get('/reclamacoes', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
+        if(result.length < 0){
+            res.status(404).send({error: "Não existe reclamações no banco de dados."})
+        }
         res.status(200).send(result)
     })
 })
@@ -18,6 +21,9 @@ router.get('/reclamacao/:id_reclamacao', function(req, res) {
             res.status(500).send(err) 
             throw err
         }
+        if(result.length < 0){
+            res.status(404).send({error: "Não existe uma reclamação com esse ID no banco de dados."})
+        }
         res.status(200).send(result)
     })
 })
@@ -26,10 +32,11 @@ router.post('/reclamacao/', function(req, res) {
     var params = req.body;
     db_rooms.createReclamacao(params.id_usuario, params.id_sala, params.tipo, params.descricao, function(err, result){
         if (err){
-            res.status(500).send(err) 
+            res.status(500).send({error : "Erro na criação de uma reclamação no banco de dados." })
+            console.log(err)
             throw err
         }
-        res.json({status: "201", message: "Usuário criado com sucesso"})
+        res.status(200).send({message: "Reclamação criada com sucesso"})
     })
 })
 
@@ -37,17 +44,31 @@ router.delete('/reclamacao/', function(req, res) {
     var params = req.body;
     db_rooms.deleteReclamacao(params.id_reclamacao, function(err, result){
         if (err){
-            res.status(500).send(err) 
+            res.status(500).send({error : "Erro na remoção de uma reclamação no banco de dados." })
+            console.log(err)
             throw err
         }
-        res.status(200).send({message: "Usuário deletado com sucesso"})
+        res.status(200).send({message: "Reclamação removida com sucesso"})
+    })
+})
+
+router.put('/reclamacao/', function(req, res) {
+    var params = req.body;
+    db_rooms.updateReclamacao(params, params.id_reclamacao, function(err, result){
+        if (err){
+            res.status(500).send({error : "Erro ao atualizar dados da reclamação no banco de dados." })
+            console.log(err)
+            throw err
+        }
+        res.status(200).send({message: "Reclamação atualizada com sucesso."})
     })
 })
              
 router.get('/openreclamacoes', function(req, res) {
     db_rooms.getOpenReclamacoes(function(err, result){
         if (err){
-            res.status(500).send(err) 
+            res.status(500).send({error : "Erro na consulta de reclamações abertas." })
+            console.log(err)
             throw err
         }
         res.status(200).send(result)
@@ -57,7 +78,8 @@ router.get('/openreclamacoes', function(req, res) {
 router.get('/closedreclamacoes', function(req, res) {
     db_rooms.getClosedReclamacoes(function(err, result){
         if (err){
-            res.status(500).send(err) 
+            res.status(500).send({error : "Erro na consulta de reclamações fechadas." })
+            console.log(err)
             throw err
         }
         res.status(200).send(result)
