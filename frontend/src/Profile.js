@@ -9,6 +9,8 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
+import Button from '@material-ui/core/Button';
+
 
 export default class Profile extends React.Component{
     constructor(){
@@ -22,6 +24,12 @@ export default class Profile extends React.Component{
             semestre:'',
             reputacao:'',
         }
+
+        this.editeProfileEmail    =  this.editeProfileEmail.bind(this);
+        this.editeProfileNome     =  this.editeProfileNome.bind(this);
+        this.editeProfileSenha    =  this.editeProfileSenha.bind(this);
+        this.editeProfileCurso    =  this.editeProfileCurso.bind(this);
+        this.editeProfileSemestre =  this.editeProfileSemestre.bind(this);
     }
     
 
@@ -40,22 +48,67 @@ export default class Profile extends React.Component{
                 
               });
         })
-        console.log(this.state.email)
     
     }
 
-    editeProfile(){
-        fetch('/profile', {
+    editeProfileEmail(){
+        fetch('/profile/' + this.state.id_user, {
             method: 'POST',
             body: JSON.stringify({
                 "email": this.state.email,
+                 }),
+            headers: {"Content-Type": "application/json"}
+        })
+        window.location.assign('/profile/' + this.id_user);
+    };
+
+
+    editeProfileNome(){
+        fetch('/profile/' + this.state.id_user, {
+            method: 'POST',
+            body: JSON.stringify({
                 "nome": this.state.nome,
+                }),
+            headers: {"Content-Type": "application/json"}
+        })
+        window.location.assign('/profile/' + this.id_user);
+    };
+
+
+    editeProfileSenha(){
+        fetch('/profile/' + this.state.id_user, {
+            method: 'POST',
+            body: JSON.stringify({
                 "senha": this.state.senha,               
+            }),
+            headers: {"Content-Type": "application/json"}
+        })
+        window.location.assign('/profile/' + this.id_user);
+    };
+
+
+    
+    editeProfileCurso(){
+        fetch('/profile/' + this.state.id_user, {
+            method: 'POST',
+            body: JSON.stringify({
                 "curso": this.state.curso,
+            }),
+            headers: {"Content-Type": "application/json"}
+        })
+        window.location.assign('/profile/' + this.id_user);
+    };
+
+    
+    editeProfileSemestre(){
+        fetch('/profile/' + this.state.id_user, {
+            method: 'POST',
+            body: JSON.stringify({
                 "semestre": this.state.semestre
             }),
             headers: {"Content-Type": "application/json"}
         })
+        window.location.assign('/profile/' + this.id_user);  
     };
 
 
@@ -77,6 +130,8 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
                             </FormControl>
+                            <Button onClick = {this.editeProfileNome}>Save</Button>
+                            
                             <br></br>
                             <br></br>
                             
@@ -87,6 +142,7 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
                             </FormControl>
+                            <Button onClick = {this.editeProfileEmail}>Save</Button>
 
                             <br></br>
                             <br></br>
@@ -99,6 +155,7 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
                             </FormControl>
+                            <Button onClick = {this.editeProfileSenha}>Save</Button>
 
                             <br></br>
                             <br></br>
@@ -110,7 +167,8 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
                             </FormControl>
-                            
+                            <Button onClick = {this.editeCurso}>Save</Button>
+
                             <br></br>
                             <br></br>
                       
@@ -121,7 +179,8 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
                             </FormControl>
-
+                            <Button onClick = {this.editeProfileSemestre}>Save</Button>
+                        
                         </div>
                     </div>
                 </Grid>
