@@ -1,8 +1,7 @@
 var connection = require('./db_connection')
 
 function getUsers(callback) {
-    //Determinar quais informações vamos disponibilizar
-    var sql = 'SELECT * FROM Usuarios'
+    var sql = 'SELECT * FROM usuario_info'
     connection.query(sql, function (err, result, fields) {
         if (err) {
             callback(err, null)
