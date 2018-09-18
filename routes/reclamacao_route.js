@@ -12,8 +12,8 @@ router.get('/reclamacoes', function(req, res) {
     })
 })
 
-router.get('/reclamacoes/:id_reclamacao', function(req, res) {
-    db_rooms.getUser(req.params.id_reclamacao, function(err, result){
+router.get('/reclamacao/:id_reclamacao', function(req, res) {
+    db_rooms.getReclamacao(req.params.id_reclamacao, function(err, result){
         if (err){
             res.status(500).send(err) 
             throw err
@@ -22,7 +22,7 @@ router.get('/reclamacoes/:id_reclamacao', function(req, res) {
     })
 })
 
-router.post('/reclamacoes/', function(req, res) {
+router.post('/reclamacao/', function(req, res) {
     var params = req.body;
     db_rooms.createReclamacao(params.id_usuario, params.id_sala, params.tipo, params.descricao, function(err, result){
         if (err){
@@ -33,9 +33,9 @@ router.post('/reclamacoes/', function(req, res) {
     })
 })
 
-router.delete('/reclamacoes/', function(req, res) {
+router.delete('/reclamacao/', function(req, res) {
     var params = req.body;
-    db_rooms.deleteUser(params.id_reclamacao, function(err, result){
+    db_rooms.deleteReclamacao(params.id_reclamacao, function(err, result){
         if (err){
             res.status(500).send(err) 
             throw err
@@ -44,9 +44,9 @@ router.delete('/reclamacoes/', function(req, res) {
     })
 })
 
-router.put('/reclamacoes/', function(req, res) {
+router.put('/reclamacao/', function(req, res) {
     var params = req.body;
-    db_rooms.updateUser(params.id_reclamacao, params, function(err, result){
+    db_rooms.updateReclamacao(params.id_reclamacao, params, function(err, result){
         if (err){
             res.status(500).send(err) 
             throw err

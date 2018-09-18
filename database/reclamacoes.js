@@ -12,7 +12,7 @@ function getReclamacoes(callback) {
 }
 
 function getReclamacao(id_reclamacao, callback) {
-    var sql = 'SELECT * FROM Reclamacao WHERE id_reclamacao = ?'
+    var sql = 'SELECT * FROM Reclamacoes WHERE id_reclamacao = ?'
     connection.query(sql, id_reclamacao, function (err, result, fields) {
         if (err) {
             callback(err, null)
@@ -35,7 +35,7 @@ function createReclamacao(id_usuario, id_sala, tipo, descricao, callback) {
 
 function deleteReclamacao(id_reclamacao, callback) {
     // ID_sala ou nome?
-    var sql = 'DELETE FROM Reclamacao WHERE id_reclamacao = ?'
+    var sql = 'DELETE FROM Reclamacoes WHERE id_reclamacao = ?'
     connection.query(sql, id_reclamacao, function (err, result, fields) {
         if (err) {
             callback(err, null)

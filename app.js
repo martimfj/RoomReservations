@@ -9,6 +9,7 @@ var room_router = require('./routes/room_route')
 var curso_router = require('./routes/curso_route')
 var user_router = require('./routes/user_route')
 var reserva_router = require('./routes/reserva_route')
+var reclamacao_router = require('./routes/reclamacao_route')
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}))
@@ -18,6 +19,7 @@ app.use('/', room_router)
 app.use('/', curso_router)
 app.use('/', user_router)
 app.use('/', reserva_router)
+app.use('/', reclamacao_router)
 
 app.use(express.static(__dirname + '/frontend'))
 
