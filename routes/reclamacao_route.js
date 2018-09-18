@@ -44,18 +44,25 @@ router.delete('/reclamacao/', function(req, res) {
     })
 })
              
-router.put('/reclamacao', function(req, res) {
-    console.log("Put")
-    var params = req.body;
-    var id = params.id_reclamacao
-    delete params.id_reclamacao;
-    db_rooms.updateReclamacao(id, params, function(err, result){
+router.get('/openreclamacoes', function(req, res) {
+    db_rooms.getOpenReclamacoes(function(err, result){
         if (err){
             res.status(500).send(err) 
             throw err
         }
-        res.status(200).send({message: "Usuário atualizado com sucesso"})
+        res.status(200).send(result)
     })
 })
+
+router.get('/closedreclamacoes', function(req, res) {
+    db_rooms.getClosedReclamacoes(function(err, result){
+        if (err){
+            res.status(500).send(err) 
+            throw err
+        }
+        res.status(200).send(result)
+    })
+})
+
 
 module.exports = router

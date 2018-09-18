@@ -57,4 +57,26 @@ function updateReclamacao(id_reclamacao, data, callback) {
     })  
 }
 
-module.exports = { getReclamacoes, getReclamacao, createReclamacao, deleteReclamacao, updateReclamacao }
+function getOpenReclamacoes(callback) {
+    var sql = 'SELECT reclamacoes_abertas()'
+    connection.query(sql, function (err, result, fields) {
+        if (err) {
+            callback(err, null)
+            throw err
+        }
+        callback(null, result)
+    })  
+}
+
+function getClosedReclamacoes(callback) {
+    var sql = 'SELECT reclamacoes_fechadas()'
+    connection.query(sql, function (err, result, fields) {
+        if (err) {
+            callback(err, null)
+            throw err
+        }
+        callback(null, result)
+    })  
+}
+
+module.exports = { getReclamacoes, getReclamacao, createReclamacao, deleteReclamacao, updateReclamacao, getOpenReclamacoes, getClosedReclamacoes }
