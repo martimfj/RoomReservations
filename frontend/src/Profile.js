@@ -121,6 +121,7 @@ export default class Profile extends React.Component{
     }
 
     removeReserva = async() =>{
+        if(this.state.idReserva > 0){
         let res = await fetch('/reserva' , {
             method: 'DELETE',
             body: JSON.stringify({
@@ -132,6 +133,8 @@ export default class Profile extends React.Component{
         alert(res.message)
         window.location.assign('/profile'); 
     };
+}
+
 
     componentDidMount(){
         this.getProfile()
