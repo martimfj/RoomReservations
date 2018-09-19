@@ -30,7 +30,8 @@ router.get('/reclamacao/:id_reclamacao', function(req, res) {
 
 router.post('/reclamacao/', function(req, res) {
     var params = req.body;
-    db_rooms.createReclamacao(params.id_usuario, params.id_sala, params.tipo, params.descricao, function(err, result){
+    console.log(params)
+    db_rooms.createReclamacao(params.id_usuario, params.id_sala, params.tipo_r, params.descricao, function(err, result){
         if (err){
             res.status(500).send({error : "Erro na criação de uma reclamação no banco de dados." })
             console.log(err)

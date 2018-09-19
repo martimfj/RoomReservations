@@ -5,6 +5,7 @@ import Main from './Main';
 import Register from './Register'
 import Forum from './Forum'
 import Profile from './Profile'
+import Notify from './Notify'
 
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
           <Route path="/profile" component={Profile} />
           <Route path="/register" component={Register} />
           <Route path="/forum" component={Forum} />
+          <Route path="/notify" component={Notify} />
           
         </div>
       </Router>          
