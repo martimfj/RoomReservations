@@ -48,6 +48,7 @@ export default class Main extends React.Component{
         res = await res.json()
         this.setState({reservas: res})
         console.log(res)
+        for (var i = 0; i < res.length; i++){}
     }
 
     getSalas = async() => {      

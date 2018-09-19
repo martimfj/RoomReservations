@@ -53,7 +53,7 @@ CREATE VIEW usuario_info AS
 
 -- Consulta de reserva
 CREATE VIEW reserva_info AS 
-    SELECT nome_sala, nome, entrada, saida
+    SELECT Salas.id_sala, nome_sala, nome, entrada, saida
     FROM Reservas
 		INNER JOIN Salas USING (id_sala)
         INNER JOIN Usuarios USING(id_usuario);

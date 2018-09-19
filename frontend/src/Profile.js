@@ -151,7 +151,7 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ nome: e.target.value })}
                                 />
                             </FormControl>
-                            <Button onClick = {this.editeProfileNome}>Save</Button>
+                            <Button variant="outlined" onClick = {this.editeProfileNome}>Save</Button>
                             
                             <br></br>
                             <br></br>
@@ -163,7 +163,7 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ email: e.target.value })}
                                 />
                             </FormControl>
-                            <Button onClick = {this.editeProfileEmail}>Save</Button>
+                            <Button variant="outlined" onClick = {this.editeProfileEmail}>Save</Button>
 
                             <br></br>
                             <br></br>
@@ -176,7 +176,7 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ senha: e.target.value })}
                                 />
                             </FormControl>
-                            <Button onClick = {this.editeProfileSenha}>Save</Button>
+                            <Button variant="outlined" onClick = {this.editeProfileSenha}>Save</Button>
 
                             <br></br>
                             <br></br>
@@ -188,7 +188,7 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ curso: e.target.value })}
                                 />
                             </FormControl>
-                            <Button onClick = {this.editeCurso}>Save</Button>
+                            <Button variant="outlined" onClick = {this.editeCurso}>Save</Button>
 
                             <br></br>
                             <br></br>
@@ -200,7 +200,7 @@ export default class Profile extends React.Component{
                                     onChange={e => this.setState({ semestre: e.target.value })}
                                 />
                             </FormControl>
-                            <Button onClick = {this.editeProfileSemestre}>Save</Button>
+                            <Button variant="outlined" onClick = {this.editeProfileSemestre}>Save</Button>
                         
                         </div>
                     </div>
