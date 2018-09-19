@@ -43,7 +43,7 @@ Agora na pasta frontend, execute o comando `npm start`, e na pasta principal exe
 * Microserviço
 * Banco de dados
 
-![Diagrama Aplicação](./img/diagrama_aplicacao.png)
+![Diagrama Aplicação](./img/diagrama_aplicacao.jpeg)
 
 ### Banco de dados
 O banco de dados está dividido em três arquivos:
