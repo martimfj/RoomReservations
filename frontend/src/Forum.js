@@ -30,6 +30,7 @@ export default class Main extends React.Component{
             checkedB:true,
             id_reclamacao: 0,
             listEstado: ["Ativo", "Inativo"],
+            listTipo: ["Quebra", "Geral","Limpeza"],
             estado: 0,
             stateButton: true,
             sala: ''
@@ -173,7 +174,7 @@ export default class Main extends React.Component{
                             <TableRow>
                                 <TableCell >Nome Sala</TableCell>
                                 <TableCell >Nome Usuario</TableCell>
-                                <TableCell numeric>Tipo</TableCell>
+                                <TableCell >Tipo Reclamação</TableCell>
                                 <TableCell >Descricao</TableCell>
                                 <TableCell >Estado</TableCell>
                                 <TableCell >Horario</TableCell>
@@ -186,7 +187,7 @@ export default class Main extends React.Component{
                                 <TableRow onClick={() => this.getIdRow(line.id_reclamacao, line.estado)}>
                                     <TableCell >{line.nome_sala}</TableCell>
                                     <TableCell >{line.nome}</TableCell>
-                                    <TableCell numeric>{line.tipo_r}</TableCell>
+                                    <TableCell >{this.state.listTipo[line.tipo_r]}</TableCell>
                                     <TableCell >{line.descricao}</TableCell>
                                     <TableCell >{this.state.listEstado[line.estado]}</TableCell>
                                     <TableCell >{line.horario.slice(0,10)}</TableCell>

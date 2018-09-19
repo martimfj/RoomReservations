@@ -120,7 +120,7 @@ notifyClick = () => {
         <AppBar position="absolute" >
           <Toolbar>
             <Typography className={classes.title} onClick = {this.redMain} variant="title" color="inherit" noWrap>
-              Lalala
+              BiZerva
             </Typography>
 
             <div className={classes.grow} />

@@ -33,14 +33,15 @@ export default class Login extends React.Component {
         })
         .then(res => res.json())
         .then(callback => {
+            console.log(callback)
           
-            if(callback.status === "200"){
+            if(callback.status === 200){
                 alert(callback.message)
                 window.location.assign('/main'); 
             
             }
           
-            else if(callback.status === "401"){
+            else if(callback.status === 401){
                 alert(callback.message)
             }
         })
@@ -52,7 +53,7 @@ export default class Login extends React.Component {
             <div className = "bigbox">
 
                 <div className = "header">
-                    <div>La<span>Lala</span></div>
+                    <div>Bi<span>Zerva</span></div>
                 </div>
                 
                 <div class="login">

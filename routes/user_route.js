@@ -79,16 +79,16 @@ router.post('/auth', function(req, res) {
         else{
             if(result.length > 0){
                 if(params.senha == result[0].senha){
-                    res.status(200).send({message: "Usuário autenticado com sucesso."})
+                    res.json({status:200, message: "Usuário autenticado com sucesso."})
                     console.log("Usuário autenticado")
                 }
                 else{
-                    res.status(401).send({error : "As senhas não são iguais."})
+                    res.json({status: 401, message : "Senha Invalida."})
                     console.log("Senha não confere")
                 }
             }
             else{
-                res.status(401).send({error : "O email não existe no banco de dados."}) 
+                res.json({status: 401, message : "O email não existe no banco de dados."}) 
                 console.log("Email não existe")
             }
         }
