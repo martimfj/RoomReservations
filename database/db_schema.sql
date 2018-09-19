@@ -41,8 +41,9 @@ CREATE TABLE Reservas(
 	id_reserva		INT NOT NULL AUTO_INCREMENT,
 	id_sala			INT NOT NULL, 
 	id_usuario		INT	NOT NULL,
-	entrada			TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	saida			DATETIME NOT NULL,
+    dia				DATETIME NOT NULL,
+	entrada			TIME NOT NULL,
+	saida			TIME NOT NULL,
 
 	PRIMARY KEY(id_reserva),
     FOREIGN KEY(id_sala) 	REFERENCES Salas(id_sala), 

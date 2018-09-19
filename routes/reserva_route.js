@@ -30,7 +30,7 @@ router.get('/reserva/:id_reserva', function(req, res) {
 
 router.post('/reserva/', function(req, res) {
     var params = req.body;
-    db_rooms.createReserva(params.id_usuario, params.id_sala, function(err, result){
+    db_rooms.createReserva(params.id_usuario, params.id_sala, params.entrada, params.saida, function(err, result){
         if (err){
             res.status(500).send({error : "Erro na criação de uma reserva no banco de dados." }) 
             console.log(err)

@@ -20,10 +20,10 @@ DELIMITER ;
 
 -- Função para adicionar uma reserva 
 DELIMITER //
-CREATE PROCEDURE adiciona_reserva (IN novo_idusuario INT, IN novo_idsala INT)
+CREATE PROCEDURE adiciona_reserva (IN novo_idusuario INT, IN novo_idsala INT, IN novo_entrada TIME, IN novo_saida TIME )
 BEGIN
-    INSERT INTO Reservas (id_usuario, id_sala, saida) 
-    VALUE (novo_idusuario, novo_idsala, current_timestamp + 1/24);
+    INSERT INTO Reservas (id_usuario, id_sala, dia, entrada, saida) 
+    VALUE (novo_idusuario, novo_idsala, CURDATE(), novo_entrada, novo_saida);
 END //
 DELIMITER ;
 
@@ -53,7 +53,7 @@ CREATE VIEW usuario_info AS
 
 -- Consulta de reserva
 CREATE VIEW reserva_info AS 
-    SELECT nome_sala, nome, entrada, saida
+    SELECT nome_sala, nome, dia, entrada, saida
     FROM Reservas
 		INNER JOIN Salas USING (id_sala)
         INNER JOIN Usuarios USING(id_usuario);

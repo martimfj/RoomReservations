@@ -22,9 +22,9 @@ function getReserva(id_reserva, callback) {
     })
 }
 
-function createReserva(id_usuario, id_sala, callback) {
-    var sql = 'CALL adiciona_reserva(?, ?)'
-    connection.query(sql, [id_usuario, id_sala], function (err, result, fields) {
+function createReserva(id_usuario, id_sala, entrada, saida, callback) {
+    var sql = 'CALL adiciona_reserva(?, ?, ?, ?)'
+    connection.query(sql, [id_usuario, id_sala, entrada, saida], function (err, result, fields) {
         if (err) {
             callback(err, null)
             throw err
@@ -34,7 +34,6 @@ function createReserva(id_usuario, id_sala, callback) {
 }
 
 function deleteReserva(id_reserva, callback) {
-    // ID_sala ou nome?
     var sql = 'DELETE FROM Reservas WHERE id_reserva = ?'
     connection.query(sql, id_reserva, function (err, result, fields) {
         if (err) {

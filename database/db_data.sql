@@ -20,13 +20,13 @@ VALUES ('brunamk@al.insper.edu.br', 'Bruna Kimura', 'bru1234', 6, 1),
 ('martimfj@al.insper.edu.br', 'Martim José', 'ma1234', 6, 1);
 COMMIT;
 
-INSERT INTO Reservas (id_sala, id_usuario, saida)
-VALUES (1, 1, '2006-02-15 04:50:33'),
-(2, 2, '2006-02-15 04:50:33'),
-(3, 3, '2006-02-15 04:50:33'),
-(4, 1, '2006-02-15 04:50:33'),
-(1, 2, '2006-02-15 04:50:33'),
-(2, 2, '2006-02-15 06:34:33');
+INSERT INTO Reservas (id_sala, id_usuario, dia, entrada, saida)
+VALUES (1, 1, '2018-09-18', '04:51:33', '05:51:33'),
+(2, 2, '2018-09-18', '04:52:33', '06:51:33'),
+(3, 3, '2018-09-18', '04:53:33', '07:51:33'),
+(4, 1, '2018-09-18', '04:54:33', '08:51:33'),
+(1, 2, '2018-09-18', '04:55:33', '09:51:33'),
+(2, 2, '2018-09-18', '04:56:33', '10:51:33');
 COMMIT;
 
 INSERT INTO Reclamacoes (id_usuario, id_sala, tipo_r, descricao, estado) 
