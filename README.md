@@ -84,6 +84,9 @@ Certifique-se que o backend esteja rodando. No programa, selecione se a requisi�
 ### Como utilizar?
 [Aplicação](./frontend/Aplicacao.md)
 
+### A ser implementado:
+* Funcionalidades que permitam usufruir de todas as rotas implementadas (DELETE, PUT e POST) para reclamações, salas, cursos e reservas.
+
 
 
 

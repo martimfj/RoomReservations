@@ -38,9 +38,11 @@
 
 - id_usuario: número identificador do usuário. É do tipo “INT” não nulo, chave estrangeira que relaciona a tabela de usuários. Junto com o id_sala serve como chave primária dessa tabela.
 
-- entrada: horário de entrada do usuário na sala de estudo. É do tipo “DATETIME” e não pode ser nulo.
+- dia: data da reserva. É do tipo "DATETIME” e não pode ser nulo.
+  
+- entrada: horário de entrada do usuário na sala de estudo. É do tipo “TIME” e não pode ser nulo.
 
-- saida: horário de saída do usuário da sala. É do tipo “DATETIME” e não pode ser nulo.
+- saida: horário de saída do usuário da sala. É do tipo “TIME” e não pode ser nulo.
 
 **Reclamações**
 
