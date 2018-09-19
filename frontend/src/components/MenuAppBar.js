@@ -89,8 +89,8 @@ notifyClick = () => {
         method: 'GET'
     })
     res = await res.json()
-    console.log(res)
-    this.setState({"count_notif" : 5})
+    console.log(res.countAberto)
+    this.setState({"count_notif" : res[0].countAberto})
   }
 
   componentDidMount(){

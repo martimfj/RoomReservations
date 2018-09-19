@@ -35,7 +35,7 @@ export default class Notify extends React.Component{
             data          : new Date(),
             nomeSala      : "Selecione a Sala",
             descricao     : "", 
-            stateButton   : true
+            stateButton   : true,
         }
         this.getSalas    =  this.getSalas.bind(this);    
     }

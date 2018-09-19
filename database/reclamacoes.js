@@ -61,7 +61,7 @@ function updateReclamacao(id_reclamacao, data, callback) {
 }
 
 function getOpenReclamacoes(callback) {
-    var sql = 'SELECT reclamacoes_abertas()'
+    var sql = 'SELECT reclamacoes_abertas() As countAberto'
     connection.query(sql, function (err, result, fields) {
         if (err) {
             callback(err, null)
@@ -72,7 +72,7 @@ function getOpenReclamacoes(callback) {
 }
 
 function getClosedReclamacoes(callback) {
-    var sql = 'SELECT reclamacoes_fechadas()'
+    var sql = 'SELECT reclamacoes_fechadas() As countFechado'
     connection.query(sql, function (err, result, fields) {
         if (err) {
             callback(err, null)
