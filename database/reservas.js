@@ -25,15 +25,22 @@ function getReserva(id_reserva, callback) {
 function createReserva(id_usuario, id_sala, entrada, saida, callback) {
     var sql = 'CALL adiciona_reserva(?, ?, ?, ?)'
     connection.query('START TRANSACTION;')
-    connection.query(sql, [id_usuario, id_sala, entrada, saida], function (err, result, fields) {
-        if (err) {
-            connection.query('ROLLBACK;')
-            callback(err, null)
-            throw err
-        }
-        connection.query('COMMIT;')
-        callback(null, result)
-    })
+    reserva_ativa = connection.query('SELECT entrada FROM reserva;')
+    if (entrada in reserva_ativa){
+        connection.query(sql, [id_usuario, id_sala, entrada, saida], function (err, result, fields) {
+            if (err) {
+                connection.query('ROLLBACK;')
+                callback(err, null)
+                throw err
+            }
+            connection.query('COMMIT;')
+            callback(null, result)
+        })
+    }
+    else{
+        connection.query('ROLLBACK;')
+    }
+    
 }
 
 function deleteReserva(id_reserva, callback) {
