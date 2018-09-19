@@ -27,13 +27,7 @@ function createReserva(id_usuario, id_sala, entrada, saida, callback) {
     connection.query('START TRANSACTION;')
 
     connection.query('SELECT entrada FROM reserva_info;', function(err, result){
-        var flagReserva = false
-        console.log("---------------------------")
-        
-        console.log(entrada)
-        console.log("---------------------------")
-       
-        
+        var flagReserva = false  
         for(var i = 0; i<result.length; i++){
        
             if(result[i].entrada == entrada){
@@ -42,24 +36,23 @@ function createReserva(id_usuario, id_sala, entrada, saida, callback) {
         }
     
 
-    if (!flagReserva){
-        connection.query(sql, [id_usuario, id_sala, entrada, saida], function (err, result, fields) {
-            if (err) {
-                connection.query('ROLLBACK;')
-                callback(err, null)
-                throw err
-            }
-            connection.query('COMMIT;')
-            callback(null, result)
-        })
-    }
+        if (!flagReserva){
+            connection.query(sql, [id_usuario, id_sala, entrada, saida], function (err, result, fields) {
+                if (err) {
+                    connection.query('ROLLBACK;')
+                    callback(err, null)
+                    throw err
+                }
+                connection.query('COMMIT;')
+                callback(null, result)
+            })
+        }
 
-    else{
-        console.log("Ja reservado")
-        connection.query('ROLLBACK;')
-        callback(null, null)
-    }
-})
+        else{
+            connection.query('ROLLBACK;')
+            callback(null, null)
+        }
+    })
 }
 
 function deleteReserva(id_reserva, callback) {

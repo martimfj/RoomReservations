@@ -114,7 +114,6 @@ export default class Main extends React.Component{
             headers: {"Content-Type": "application/json"}
         })
         res = await res.json()
-        console.log(res)
         alert(res.message)
         this.getReservas()
     
