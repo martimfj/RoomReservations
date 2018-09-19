@@ -35,11 +35,14 @@ function getAuth(email, callback) {
 
 function createUser(email, nome, senha, curso, semestre, callback) {
     var sql = 'CALL adiciona_usuario(?,?,?,?,?)'
+    connection.query('START TRANSACTION;')
     connection.query(sql, [email, nome, senha, curso, semestre], function (err, result, fields) {
         if (err) {
+            connection.query('ROLLBACK;')
             callback(err, null)
             throw err
         }
+        connection.query('COMMIT;')
         callback(null, result)
     })
 }

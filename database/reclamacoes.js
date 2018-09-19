@@ -24,11 +24,14 @@ function getReclamacao(id_reclamacao, callback) {
 
 function createReclamacao(id_usuario, id_sala, tipo, descricao, callback) {
     var sql = 'CALL adiciona_reclamacao(?,?,?,?)'
+    connection.query('START TRANSACTION;')
     connection.query(sql, [id_usuario, id_sala, tipo, descricao], function (err, result, fields) {
         if (err) {
+            connection.query('ROLLBACK;')
             callback(err, null)
             throw err
         }
+        connection.query('COMMIT;')
         callback(null, result)
     })
 }

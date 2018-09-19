@@ -25,11 +25,14 @@ function getSala(id_sala, callback) {
 
 function createSala(nome, lugares, callback) {
     var sql = 'INSERT INTO Salas (nome, lugares) VALUES (?, ?)'
+    connection.query('START TRANSACTION;')
     connection.query(sql, [nome, lugares], function (err, result, fields) {
         if (err) {
+            connection.query('ROLLBACK;')
             callback(err, null)
             throw err
         }
+        connection.query('COMMIT;')
         callback(null, result)
     })
 }

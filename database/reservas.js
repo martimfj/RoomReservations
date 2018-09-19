@@ -24,11 +24,14 @@ function getReserva(id_reserva, callback) {
 
 function createReserva(id_usuario, id_sala, entrada, saida, callback) {
     var sql = 'CALL adiciona_reserva(?, ?, ?, ?)'
+    connection.query('START TRANSACTION;')
     connection.query(sql, [id_usuario, id_sala, entrada, saida], function (err, result, fields) {
         if (err) {
+            connection.query('ROLLBACK;')
             callback(err, null)
             throw err
         }
+        connection.query('COMMIT;')
         callback(null, result)
     })
 }
