@@ -46,7 +46,7 @@ Agora na pasta frontend, execute o comando `npm start`, e na pasta principal exe
 ![Diagrama Aplicação](./img/diagrama_aplicacao.jpeg)
 
 ### Banco de dados
-O banco de dados está dividido em três arquivos:
+Os scripts do banco de dados estão divididos em três arquivos:
 * db_schema.sql (script com o banco de dados)
 * db_extras.sql (script com procedures, functions, triggers e views)
 * db_data.sql (alguns exemplos de inserção)

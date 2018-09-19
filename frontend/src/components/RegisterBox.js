@@ -6,6 +6,7 @@ const styleBut = {
   };
 
 class RegisterBox extends React.Component{
+    
 
     cancelClick = (value) => {
         window.location.assign('/login');  

@@ -55,19 +55,13 @@ export default class Main extends React.Component{
             horarios      :[],
             horariosRes   :[],
             index         : '',
+            nomeSala: "Selecione uma Sala"
         }
         this.getSalas    =  this.getSalas.bind(this);
         this.getReservas =  this.getReservas.bind(this);
         this.getReservasId =  this.getReservasId.bind(this);
     
     }
-
-    // getHorarios(){
-    //     for (var i = 0; i<names.length; i++){
-    //         for (var j = 0; i<names.length; i++){
-    //         if(this.state.horarios[i] === horariosRes[i]:)
-    //     }
-    // }
 
     getReservas = async() => {      
         let res = await fetch('/reservas', {
@@ -96,8 +90,9 @@ export default class Main extends React.Component{
         this.setState({salas: res})
     }
 
-    getReservasId(id_sala){
-        this.setState({idSala: id_sala})
+    getReservasId(id_sala, nomeSala){
+        this.setState({idSala: id_sala,
+                        nomeSala: "Sala: " + nomeSala})
         this.getReservas()
     }
 
@@ -119,7 +114,6 @@ export default class Main extends React.Component{
             headers: {"Content-Type": "application/json"}
         })
         res = await res.json()
-        console.log(res)
         alert(res.message)
         this.getReservas()
     
@@ -142,7 +136,7 @@ export default class Main extends React.Component{
                     
                     {this.state.salas.map((line, index) => {
                         return (
-                            <Card style = {{maxWidth: 345, margin:10}}  onClick={() => this.getReservasId(line.id_sala)}>
+                            <Card style = {{maxWidth: 345, margin:10}}  onClick={() => this.getReservasId(line.id_sala, line.nome_sala)}>
                                 <CardMedia/>
                                 <CardContent>
                                 <Typography gutterBottom variant="headline" component="h2">
@@ -162,7 +156,8 @@ export default class Main extends React.Component{
                 </Grid> 
 
                 <Grid item xs={6}>
-                    
+                <h1>{this.state.nomeSala}</h1>
+
                 <Paper>
                     <Table >
                         <TableHead style = {{backgroundColor: "#3F51B5"}}>

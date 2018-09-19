@@ -89,8 +89,8 @@ notifyClick = () => {
         method: 'GET'
     })
     res = await res.json()
-    console.log(res)
-    this.setState({"count_notif" : 5})
+    console.log(res.countAberto)
+    this.setState({"count_notif" : res[0].countAberto})
   }
 
   componentDidMount(){
@@ -111,7 +111,7 @@ notifyClick = () => {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.redProfile}>Profile</MenuItem>
-        <MenuItem onClick={this.singOutClick}>Sing Out</MenuItem>
+        <MenuItem onClick={this.singOutClick}>Sign Out</MenuItem>
       </Menu>
     );
 

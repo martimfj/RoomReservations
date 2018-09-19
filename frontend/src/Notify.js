@@ -13,6 +13,16 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import ListItemText from "@material-ui/core/ListItemText";
+import Select from "@material-ui/core/Select";
+import Checkbox from "@material-ui/core/Checkbox";
+import Chip from "@material-ui/core/Chip";
+
+
 const styles = theme => ({
     container: {
       display: 'flex',
@@ -35,7 +45,8 @@ export default class Notify extends React.Component{
             data          : new Date(),
             nomeSala      : "Selecione a Sala",
             descricao     : "", 
-            stateButton   : true
+            stateButton   : true,
+            tipoView      : ["Quebra", "Geral", "Limpeza"]
         }
         this.getSalas    =  this.getSalas.bind(this);    
     }
@@ -119,16 +130,26 @@ export default class Notify extends React.Component{
                 <form  noValidate autoComplete="off">
                     <h1>{this.state.nomeSala}</h1>
 
-                    <TextField 
-                    label="Tipo"
-                    margin="normal"
-                    variant="outlined"
-                    onChange={e => this.setState({ tipo: e.target.value })}
-                    />
+                    
+                        <FormControl style = {{minWidth: 200}} >
+                            <InputLabel  htmlFor="age-simple">Curso</InputLabel>
+                            <Select 
+                                value={this.state.tipo}
+                                onChange={e => this.setState({ tipo: e.target.value })}
+                            >
+                            {this.state.tipoView.map((line, index) => {
+                                    return (
+                                        
+                                <MenuItem value={index}>{line}</MenuItem>
+                                    )
+                            })}
+                            </Select>
+                            
+                        </FormControl>                        
                     
                     <br></br>
                     
-                    <TextField 
+                    <TextField style = {{minWidth: 200}}
                     label="Descrição"
                     multiline
                     rows="4"

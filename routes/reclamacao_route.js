@@ -76,6 +76,7 @@ router.get('/openreclamacoes', function(req, res) {
             console.log(err)
             throw err
         }
+        console.log(result)
         res.status(200).send(result)
     })
 })
