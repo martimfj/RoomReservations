@@ -30,7 +30,8 @@ router.get('/user/:id_usuario', function(req, res) {
 
 router.post('/user/', function(req, res) {
     var params = req.body;
-    db_rooms.createUser(params.email, params.nome, params.senha, params.curso, params.semestre, function(err, result){
+    console.log(params)
+    db_rooms.createUser(params.email, params.nome, params.senha, params.id_curso, params.semestre, function(err, result){
         if (err){
             res.status(500).send({error : "Erro na criação do usuário no banco de dados." })
             console.log(err) 

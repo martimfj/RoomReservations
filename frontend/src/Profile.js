@@ -216,8 +216,8 @@ export default class Profile extends React.Component{
                                         <TableRow onClick={() => this.getReservaId(line.id_reserva)}>
                                             <TableCell >{line.nome_sala}</TableCell>
                                             <TableCell >{line.nome}</TableCell>
-                                            <TableCell numeric>{line.entrada}</TableCell>
-                                            <TableCell numeric>{line.saida}</TableCell>
+                                            <TableCell numeric>{line.entrada.slice(0,5)}</TableCell>
+                                            <TableCell numeric>{line.saida.slice(0,5)}</TableCell>
                                         </TableRow>            
                                         )}
                                         })}

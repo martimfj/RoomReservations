@@ -16,11 +16,12 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Description from '@material-ui/icons/Description';
 
 const styles = theme => ({
   root: {
     width: '100%',
-    marginBottom:100,
+    marginBottom:80,
   },
   grow: {
     flexGrow: 1,
@@ -77,6 +78,10 @@ class PrimarySearchAppBar extends React.Component {
     window.location.assign('/forum');  
 };
 
+notifyClick = () => {
+  this.setState({ anchorEl: null });
+  window.location.assign('/notify');  
+};
 
   getCountAt = async() => {
     console.log("APP")      
@@ -120,11 +125,18 @@ class PrimarySearchAppBar extends React.Component {
 
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
+
+              <IconButton color="inherit" onClick={this.notifyClick} >
+                <Description/>
+              </IconButton>
+
               <IconButton color="inherit" onClick={this.forumClick} >
                 <Badge className={classes.margin} badgeContent={this.state.count_notif} color="secondary">
                   <MailIcon />
                 </Badge>
               </IconButton>
+
+              
               
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : null}
@@ -132,6 +144,7 @@ class PrimarySearchAppBar extends React.Component {
                 onClick={this.handleProfileMenuOpen}
                 color="inherit"
               >
+              
                 <AccountCircle />
               </IconButton>
             </div>
