@@ -22,9 +22,9 @@ function getCurso(id_curso, callback) {
     })
 }
 
-function createCurso(nome, tipo, callback) {
-    var sql = 'INSERT INTO Cursos (nome, tipo) VALUES (?, ?)'
-    connection.query(sql, [nome, tipo], function (err, result, fields) {
+function createCurso(nome_curso, tipo, callback) {
+    var sql = 'INSERT INTO Cursos (nome_curso, tipo) VALUES (?, ?)'
+    connection.query(sql, [nome_curso, tipo], function (err, result, fields) {
         if (err) {
             callback(err, null)
             throw err
