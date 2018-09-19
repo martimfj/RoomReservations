@@ -30,7 +30,8 @@ export default class Main extends React.Component{
             checkedC:false,
             checkedD:false,
             id_reclamacao: 0,
-            tipo_r: 0
+            tipo_r: 0,
+            estado: ["Ativo", "Inativo"]
         }
         this.clickState    =  this.clickState.bind(this);
    
@@ -50,7 +51,7 @@ export default class Main extends React.Component{
             method: 'PUT',
             body: JSON.stringify({
                 "id_reclamacao": this.state.id_reclamacao,
-                "tipo_r":  !(this.state.tipo_r)
+                "estado":  !(this.state.estado)
             }),
             headers: {"Content-Type": "application/json"}
         })
@@ -72,9 +73,9 @@ export default class Main extends React.Component{
     }
 
 
-    getIdRow(id_rec, tipo){
+    getIdRow(id_rec, estado){
         this.setState({id_reclamacao: id_rec})
-        this.setState({tipo_r: tipo})
+        this.setState({estado: estado})
         console.log(id_rec)    
     }
 
@@ -152,12 +153,13 @@ export default class Main extends React.Component{
 
                         <Paper>
                             <Table >
-                                <TableHead style = {{backgroundColor: "Black"}}>
+                                <TableHead style = {{backgroundColor: "Gray"}}>
                                 <TableRow>
                                     <TableCell >Nome Sala</TableCell>
                                     <TableCell >Nome Usuario</TableCell>
                                     <TableCell numeric>Tipo</TableCell>
                                     <TableCell >Descricao</TableCell>
+                                    <TableCell >Estado</TableCell>
                                     <TableCell >Horario</TableCell>
                                 </TableRow>
                                 </TableHead>                            
@@ -165,11 +167,12 @@ export default class Main extends React.Component{
                                     {this.state.notif.map((line, index) => {
                                     return (
                                 
-                                    <TableRow onClick={() => this.getIdRow(line.id_reclamacao, line.tipo_r)}>
+                                    <TableRow onClick={() => this.getIdRow(line.id_reclamacao, line.estado)}>
                                         <TableCell >{line.nome_sala}</TableCell>
                                         <TableCell >{line.nome}</TableCell>
                                         <TableCell numeric>{line.tipo_r}</TableCell>
                                         <TableCell >{line.descricao}</TableCell>
+                                        <TableCell >{this.state.estado[line.estado]}</TableCell>
                                         <TableCell >{line.horario}</TableCell>
                                     </TableRow>            
                                     )
@@ -178,7 +181,7 @@ export default class Main extends React.Component{
                             </Table>
                         </Paper>
 
-                        <Button onClick = {this.clickState}>Mudar Tipo</Button>
+                        <Button variant="outlined" onClick = {this.clickState}>Mudar Estado</Button>
                     </div>
                 </Grid>
             </Grid>

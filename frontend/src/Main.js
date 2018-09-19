@@ -60,7 +60,6 @@ export default class Main extends React.Component{
 
     getReservasId(id_sala){
         this.getReservas()
-        
     }
 
 
@@ -80,16 +79,16 @@ export default class Main extends React.Component{
 
                 <Grid item xs={3}>
                     
-                    {this.state.salas.map((card, index) => {
+                    {this.state.salas.map((line, index) => {
                         return (
-                            <Card style = {{maxWidth: 345, margin:10}}  onClick={() => this.getReservasId(card.id_sala)}>
+                            <Card style = {{maxWidth: 345, margin:10}}  onClick={() => this.getReservasId(line.id_sala)}>
                                 <CardMedia/>
                                 <CardContent>
                                 <Typography gutterBottom variant="headline" component="h2">
-                                    Sala: {card.nome_sala}
+                                    Sala: {line.nome_sala}
                                 </Typography>
                                 <Typography component="p">
-                                    Capacidade: {card.lugares} Pessoas
+                                    Capacidade: {line.lugares} Pessoas
                                 </Typography>
                                 </CardContent>
                             </Card>

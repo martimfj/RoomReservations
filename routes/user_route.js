@@ -60,7 +60,7 @@ router.put('/user/', function(req, res) {
             console.log(err) 
             throw err
         }
-        res.status(200).send({message: "Usuário atualizado com sucesso."})
+        res.status(200).send({message: "Atualizado com sucesso."})
     })
 })
 
