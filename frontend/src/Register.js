@@ -39,7 +39,6 @@ export default class Register extends React.Component {
         .then(res => res.json())
         .then(callback => {
             if(callback.status === "201"){
-                localStorage.setItem("email", this.state.email)
                 window.location.assign('/main'); 
             }
             else if(callback.status === "500"){
@@ -53,7 +52,7 @@ export default class Register extends React.Component {
             <div className = "Rbigbox">
 
                 <div className = "header">
-                    <div>La<span>Lala</span></div>
+                    <div>Bio<span>Zerva</span></div>
                 </div>
                 
                 <div class="register">
@@ -64,7 +63,7 @@ export default class Register extends React.Component {
                     <input type="text" placeholder="Curso" onChange={e => this.setState({ id_curso: e.target.value })}></input><br/>
                     <input type="text" placeholder="Semestre" onChange={e => this.setState({ semestre: e.target.value })}></input><br/>
 
-                    <Button variant="outlined" style={styleBut} onClick = {this.confirmClick} >Conirmar </Button>
+                    <Button variant="outlined" style={styleBut} onClick = {this.confirmClick} >Confirmar </Button>
                     <Button variant="outlined" style={styleBut} onClick = {this.cancelClick}>Cancelar</Button>
                 
                 </div>    

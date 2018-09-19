@@ -111,7 +111,7 @@ notifyClick = () => {
         onClose={this.handleMenuClose}
       >
         <MenuItem onClick={this.redProfile}>Profile</MenuItem>
-        <MenuItem onClick={this.singOutClick}>Sing Out</MenuItem>
+        <MenuItem onClick={this.singOutClick}>Sign Out</MenuItem>
       </Menu>
     );
 

@@ -33,7 +33,7 @@ router.post('/user/', function(req, res) {
     console.log(params)
     db_rooms.createUser(params.email, params.nome, params.senha, params.id_curso, params.semestre, function(err, result){
         if (err){
-            res.status(500).send({error : "Erro na criação do usuário no banco de dados." })
+            res.json({status:"500", message : "Dados invalidos." })
             console.log(err) 
             throw err
         }
